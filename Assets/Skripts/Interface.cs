@@ -24,43 +24,90 @@ public class Interface : MonoBehaviour {
         animSett = settPanel.GetComponent<Animator>();
     }
 
+    public void ShowRecept()
+    {
+        if (animMenu.GetBool("Recept"))
+            animMenu.SetTrigger("ReceptClose");
+        else
+            animMenu.SetTrigger("ReceptOpen");
+        animMenu.SetBool("Recept", !animMenu.GetBool("Recept"));
+    }
+
     public void ShowMenu()
     {
+        if (animMenu.GetBool("Opened"))
+            animMenu.SetTrigger("MenuClose");
+        else
+            animMenu.SetTrigger("MenuOpen");
         animMenu.SetBool("Opened", !animMenu.GetBool("Opened"));
     }
 
     public void ShowTwoMenu()
     {
-        twoAnimMenu.SetBool("Opened", true);
+        twoAnimMenu.SetTrigger("TwoMenuOpen");
+        animInv.SetTrigger("Open");
         animInv.SetBool("Opened", true);
     }
 
     public void ShowInventory()
     {
-        animInv.SetBool("Opened", true);
-        animAch.SetBool("Opened", false);
-        animSett.SetBool("Opened", false);
+        if (!animInv.GetBool("Opened"))
+        {
+            animInv.SetTrigger("Open");
+            animInv.SetBool("Opened", true);
+        }
+        if (animAch.GetBool("Opened"))
+        {
+            animAch.SetTrigger("Close");
+            animAch.SetBool("Opened", false);
+        }
+        if (animSett.GetBool("Opened"))
+        {
+            animSett.SetTrigger("Close");
+            animSett.SetBool("Opened", false);
+        }
     }
 
     public void ShowAchivements()
     {
-        animAch.SetBool("Opened", true);
-        animInv.SetBool("Opened", false);
-        animSett.SetBool("Opened", false);
+        if (!animAch.GetBool("Opened"))
+        {
+            animAch.SetTrigger("Open");
+            animAch.SetBool("Opened", true);
+        }
+        if (animSett.GetBool("Opened"))
+        {
+            animSett.SetTrigger("Close");
+            animSett.SetBool("Opened", false);
+        }
     }
 
     public void ShowSettings()
     {
-        animSett.SetBool("Opened", true);
-        animAch.SetBool("Opened", false);
-        animInv.SetBool("Opened", false);
+        if (!animSett.GetBool("Opened"))
+        {
+            animSett.SetTrigger("Open");
+            animSett.SetBool("Opened", true);
+        }
     }
 
     public void ShowGame()
     {
-        twoAnimMenu.SetBool("Opened", false);
-        animSett.SetBool("Opened", false);
-        animAch.SetBool("Opened", false);
-        animInv.SetBool("Opened", false);
+        if (animInv.GetBool("Opened"))
+        {
+            animInv.SetTrigger("Close");
+            animInv.SetBool("Opened", false);
+        }
+        if (animAch.GetBool("Opened"))
+        {
+            animAch.SetTrigger("Close");
+            animAch.SetBool("Opened", false);
+        }
+        if (animSett.GetBool("Opened"))
+        {
+            animSett.SetTrigger("Close");
+            animSett.SetBool("Opened", false);
+        }
+        twoAnimMenu.SetTrigger("TwoMenuClose");
     }
 }
