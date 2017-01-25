@@ -3,12 +3,14 @@ using System.Collections;
 
 public class Interface : MonoBehaviour {
 
+    public GameObject study;
     public GameObject menuItems;
     public GameObject twoMenuItems;
     public GameObject invPanel;
     public GameObject achPanel;
     public GameObject settPanel;
 
+    Animator animStudy;
     Animator animMenu;
     Animator twoAnimMenu;
     Animator animInv;
@@ -17,6 +19,7 @@ public class Interface : MonoBehaviour {
 
     void Start()
     {
+        animStudy = study.GetComponent<Animator>();
         animMenu = menuItems.GetComponent<Animator>();
         twoAnimMenu = twoMenuItems.GetComponent<Animator>();
         animInv = invPanel.GetComponent<Animator>();
@@ -109,5 +112,29 @@ public class Interface : MonoBehaviour {
             animSett.SetBool("Opened", false);
         }
         twoAnimMenu.SetTrigger("TwoMenuClose");
+    }
+
+    public void ShowStudy()
+    {
+        if (!animStudy.GetBool("Opened"))
+            animStudy.SetTrigger("StudyOpen");
+        else
+            animStudy.SetTrigger("StudyClose");
+        animStudy.SetBool("Opened", !animStudy.GetBool("Opened"));
+    }
+
+    public void FirstOpen()
+    {
+        animStudy.SetTrigger("First");
+    }
+
+    public void TwoOpen()
+    {
+        animStudy.SetTrigger("Two");
+    }
+
+    public void ThreeOpen()
+    {
+        animStudy.SetTrigger("Three");
     }
 }
