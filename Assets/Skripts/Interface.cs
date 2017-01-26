@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Interface : MonoBehaviour {
 
+    public GameObject recepts;
     public GameObject study;
     public GameObject menuItems;
     public GameObject twoMenuItems;
@@ -10,6 +11,7 @@ public class Interface : MonoBehaviour {
     public GameObject achPanel;
     public GameObject settPanel;
 
+    Animator animRecepts;
     Animator animStudy;
     Animator animMenu;
     Animator twoAnimMenu;
@@ -19,6 +21,7 @@ public class Interface : MonoBehaviour {
 
     void Start()
     {
+        animRecepts = recepts.GetComponent<Animator>();
         animStudy = study.GetComponent<Animator>();
         animMenu = menuItems.GetComponent<Animator>();
         twoAnimMenu = twoMenuItems.GetComponent<Animator>();
@@ -136,5 +139,14 @@ public class Interface : MonoBehaviour {
     public void ThreeOpen()
     {
         animStudy.SetTrigger("Three");
+    }
+
+    public void ShowRecepts()
+    {
+        if (!animRecepts.GetBool("Opened"))
+            animRecepts.SetTrigger("StudyOpen");
+        else
+            animRecepts.SetTrigger("StudyClose");
+        animRecepts.SetBool("Opened", !animRecepts.GetBool("Opened"));
     }
 }
