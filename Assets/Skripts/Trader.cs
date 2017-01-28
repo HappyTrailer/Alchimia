@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ЕNewBehaviourScript : MonoBehaviour {
+public class Trader : MonoBehaviour {
 
 	//1. Обновление торговца каждых 5 минут
     //2. Пополнение товаров до определенного количества
