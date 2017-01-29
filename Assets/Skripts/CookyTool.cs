@@ -4,14 +4,20 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointerDownHandler, IPointerUpHandler{
-    
+
     public Text text;
+    public float number = 255;
 
     Vector3 startPos;
 
 	void Start () {
         startPos = transform.position;
 	}
+
+    void Update()
+    {
+        text.text = number.ToString("F0");
+    }
 
     public void OnDrag(PointerEventData eventData)
     {
@@ -27,9 +33,7 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
         else
             y = eventData.position.y - transform.position.y;
 
-        float number = System.Convert.ToSingle(text.text);
-        number -= (x + y);
-        text.text = number.ToString("F0");
+        number -= (x + y) / 20;
 
         transform.position = eventData.position;
     }
