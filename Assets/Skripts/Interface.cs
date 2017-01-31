@@ -1,8 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Interface : MonoBehaviour {
 
+    public GameObject tradeCooki;
+    public GameObject tradeStudy;
+    public GameObject tradeIngr;
+    public GameObject tradeMenuItems;
     public GameObject recepts;
     public GameObject study;
     public GameObject menuItems;
@@ -11,6 +16,10 @@ public class Interface : MonoBehaviour {
     public GameObject achPanel;
     public GameObject settPanel;
 
+    Animator animTradeCooki;
+    Animator animTradeStudy;
+    Animator animTradeIngr;
+    Animator tradeAnimMenu;
     Animator animRecepts;
     Animator animStudy;
     Animator animMenu;
@@ -21,6 +30,10 @@ public class Interface : MonoBehaviour {
 
     void Start()
     {
+        animTradeCooki = tradeCooki.GetComponent<Animator>();
+        animTradeStudy = tradeStudy.GetComponent<Animator>();
+        animTradeIngr = tradeIngr.GetComponent<Animator>();
+        tradeAnimMenu = tradeMenuItems.GetComponent<Animator>();
         animRecepts = recepts.GetComponent<Animator>();
         animStudy = study.GetComponent<Animator>();
         animMenu = menuItems.GetComponent<Animator>();
@@ -124,21 +137,33 @@ public class Interface : MonoBehaviour {
         else
             animStudy.SetTrigger("StudyClose");
         animStudy.SetBool("Opened", !animStudy.GetBool("Opened"));
+        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
+        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
+        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
     }
 
     public void FirstOpen()
     {
         animStudy.SetTrigger("First");
+        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = false;
+        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
+        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
     }
 
     public void TwoOpen()
     {
         animStudy.SetTrigger("Two");
+        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = false;
+        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
+        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
     }
 
     public void ThreeOpen()
     {
         animStudy.SetTrigger("Three");
+        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = false;
+        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
+        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
     }
 
     public void ShowRecepts()
@@ -148,5 +173,74 @@ public class Interface : MonoBehaviour {
         else
             animRecepts.SetTrigger("StudyClose");
         animRecepts.SetBool("Opened", !animRecepts.GetBool("Opened"));
+    }
+
+    public void ShowTradeMenu()
+    {
+        tradeAnimMenu.SetTrigger("TradeMenuOpen");
+        animTradeIngr.SetTrigger("TradeOpen");
+        animTradeIngr.SetBool("Opened", true);
+    }
+
+    public void ShowTradeIngr()
+    {
+        if (!animTradeIngr.GetBool("Opened"))
+        {
+            animTradeIngr.SetTrigger("TradeOpen");
+            animTradeIngr.SetBool("Opened", true);
+        }
+        if (animTradeStudy.GetBool("Opened"))
+        {
+            animTradeStudy.SetTrigger("TradeClose");
+            animTradeStudy.SetBool("Opened", false);
+        }
+        if (animTradeCooki.GetBool("Opened"))
+        {
+            animTradeCooki.SetTrigger("TradeClose");
+            animTradeCooki.SetBool("Opened", false);
+        }
+    }
+
+    public void ShowTradeStudy()
+    {
+        if (!animTradeStudy.GetBool("Opened"))
+        {
+            animTradeStudy.SetTrigger("TradeOpen");
+            animTradeStudy.SetBool("Opened", true);
+        }
+        if (animTradeCooki.GetBool("Opened"))
+        {
+            animTradeCooki.SetTrigger("TradeClose");
+            animTradeCooki.SetBool("Opened", false);
+        }
+    }
+
+    public void ShowTradeCooki()
+    {
+        if (!animTradeCooki.GetBool("Opened"))
+        {
+            animTradeCooki.SetTrigger("TradeOpen");
+            animTradeCooki.SetBool("Opened", true);
+        }
+    }
+
+    public void ShowTradeGame()
+    {
+        if (animTradeIngr.GetBool("Opened"))
+        {
+            animTradeIngr.SetTrigger("TradeClose");
+            animTradeIngr.SetBool("Opened", false);
+        }
+        if (animTradeStudy.GetBool("Opened"))
+        {
+            animTradeStudy.SetTrigger("TradeClose");
+            animTradeStudy.SetBool("Opened", false);
+        }
+        if (animTradeCooki.GetBool("Opened"))
+        {
+            animTradeCooki.SetTrigger("TradeClose");
+            animTradeCooki.SetBool("Opened", false);
+        }
+        tradeAnimMenu.SetTrigger("TradeMenuClose");
     }
 }

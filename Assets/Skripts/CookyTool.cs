@@ -33,7 +33,7 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
         else
             y = eventData.position.y - transform.position.y;
 
-        number -= (x + y) / 20;
+        number -= (x + y) / 100;
 
         transform.position = eventData.position;
     }
