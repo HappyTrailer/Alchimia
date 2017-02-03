@@ -5,6 +5,7 @@ using System.Collections;
 public class Interface : MonoBehaviour {
 
     public GameObject receptPotion;
+    public GameObject receptOnePotion;
 
     public GameObject tradeCooki;
     public GameObject tradeStudy;
@@ -47,11 +48,22 @@ public class Interface : MonoBehaviour {
 
     void Update()
     {
-        if (animMenu.GetCurrentAnimatorStateInfo(0).IsName("ReceptOpen") && animMenu.GetBool("Recept"))
+        if (animMenu.GetCurrentAnimatorStateInfo(0).IsName("ReceptOpen") && animMenu.GetBool("Recept") && !receptOnePotion.activeSelf)
         {
             if (animMenu.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
                 receptPotion.SetActive(true);
         }
+    }
+
+    public void ShowOneRecept()
+    {
+        if (!receptOnePotion.activeSelf)
+        {
+            receptPotion.SetActive(false);
+            receptOnePotion.SetActive(true);
+        }
+        else
+            receptOnePotion.SetActive(false);
     }
 
     public void ShowRecept()
