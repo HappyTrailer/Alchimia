@@ -1,20 +1,44 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ListRecipePotion : MonoBehaviour {
     //Класс содержит массив всех рецептов
 
-    RecipePotion[] masRecPotion;
+    public GameObject receptPanel;
+    public GameObject container;
+    GameObject item;
+    public static RecipePotion[] masRecPotion;
 	// Use this for initialization
 	void Start () {
         InitMasRecPotion();
-
+        FillRecepts();
     }
     //Инициализация массива рецептов
     void InitMasRecPotion()
     {
         masRecPotion = new RecipePotion[] {
-            new RecipePotion(1, 1, 10, "Рецепт ртуть", new int[] {1, 1, 1})
+            new RecipePotion(0, 0, 10, "Чай", new int[] {0, 1}, true, "Sprite/Ing/Oreh"),
+            new RecipePotion(1, 1, 15, "Лечебный бальзам", new int[] {0, 1, 2}, true, "Sprite/Ing/Poganki"),
+            new RecipePotion(2, 2, 20, "Вытяжка из подорожника", new int[] {2, 2, 2}, true, "Sprite/Ing/Ejevika"),
+            new RecipePotion(3, 3, 25, "Мыло", new int[] {3, 2, 1}, false, "Sprite/Ing/Hmel"),
+            new RecipePotion(4, 4, 30, "Настойка боярышника", new int[] {3, 4, 0}, false, "Sprite/Ing/Kropiva"),
+            new RecipePotion(5, 5, 35, "Сироп из ежевики", new int[] {5, 3, 3}, false, "Sprite/Ing/Byzina")
         };
+    }
+
+    public void FillRecepts()
+    {
+        foreach (RecipePotion i in masRecPotion)
+        {
+            item = Instantiate(container);
+            item.transform.parent = receptPanel.transform;
+            item.transform.localScale = new Vector3(1, 1, 1);
+            item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(i.Sprite);
+            item.transform.GetChild(1).GetComponent<Text>().text = i.NameRec;
+            item.transform.GetChild(2).GetComponent<Text>().text = "Цена: " + i.Price;
+            item.transform.name = i.Id.ToString();
+        }
+        Destroy(container);
     }
 }

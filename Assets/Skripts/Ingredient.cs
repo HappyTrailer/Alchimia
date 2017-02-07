@@ -52,4 +52,9 @@ public class Ingredient {
     {
         get { return spritePath; }
     }
+
+    public string Name
+    {
+        get { return nameIngr; }
+    }
 }
