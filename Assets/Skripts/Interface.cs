@@ -94,6 +94,7 @@ public class Interface : MonoBehaviour {
         twoAnimMenu.SetTrigger("TwoMenuOpen");
         animInv.SetTrigger("Open");
         animInv.SetBool("Opened", true);
+        invPanel.GetComponent<Inventory>().FillInventory();
     }
 
     public void ShowInventory()
@@ -113,6 +114,7 @@ public class Interface : MonoBehaviour {
             animSett.SetTrigger("Close");
             animSett.SetBool("Opened", false);
         }
+        invPanel.GetComponent<Inventory>().FillInventory();
     }
 
     public void ShowAchivements()
@@ -165,6 +167,9 @@ public class Interface : MonoBehaviour {
         else
             animStudy.SetTrigger("StudyClose");
         animStudy.SetBool("Opened", !animStudy.GetBool("Opened"));
+
+        study.transform.GetChild(0).GetComponent<Text>().text = "Выберите инструмент для исследования";
+        study.transform.FindChild("Items").gameObject.SetActive(false);
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
@@ -173,6 +178,10 @@ public class Interface : MonoBehaviour {
     public void FirstOpen()
     {
         animStudy.SetTrigger("First");
+
+        study.transform.GetChild(0).GetComponent<Text>().text = "";
+        study.transform.FindChild("Items").gameObject.SetActive(true);
+        study.transform.FindChild("Items").GetChild(0).GetComponent<Text>().text = "Выберите ингридиент";
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = false;
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
@@ -181,6 +190,10 @@ public class Interface : MonoBehaviour {
     public void TwoOpen()
     {
         animStudy.SetTrigger("Two");
+
+        study.transform.GetChild(0).GetComponent<Text>().text = "";
+        study.transform.FindChild("Items").gameObject.SetActive(true);
+        study.transform.FindChild("Items").GetChild(0).GetComponent<Text>().text = "Выберите ингридиент";
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = false;
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
@@ -189,6 +202,10 @@ public class Interface : MonoBehaviour {
     public void ThreeOpen()
     {
         animStudy.SetTrigger("Three");
+
+        study.transform.GetChild(0).GetComponent<Text>().text = "";
+        study.transform.FindChild("Items").gameObject.SetActive(true);
+        study.transform.FindChild("Items").GetChild(0).GetComponent<Text>().text = "Выберите первый ингридиент";
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = false;
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
@@ -270,5 +287,15 @@ public class Interface : MonoBehaviour {
             animTradeCooki.SetBool("Opened", false);
         }
         tradeAnimMenu.SetTrigger("TradeMenuClose");
+    }
+
+    public void NextPage()
+    {
+        invPanel.GetComponent<Inventory>().NextPage();
+    }
+
+    public void PrevPage()
+    {
+        invPanel.GetComponent<Inventory>().PrevPage();
     }
 }

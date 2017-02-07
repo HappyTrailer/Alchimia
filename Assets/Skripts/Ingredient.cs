@@ -47,4 +47,9 @@ public class Ingredient {
         this.time = time;
         this.opened = opened;
     }
+
+    public string Sprite
+    {
+        get { return spritePath; }
+    }
 }
