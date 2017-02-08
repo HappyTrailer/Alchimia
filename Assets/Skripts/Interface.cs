@@ -55,6 +55,12 @@ public class Interface : MonoBehaviour {
         }
     }
 
+    public void StartCooking()
+    {
+        ShowOneRecept();
+        ShowRecept();
+    }
+
     public void ShowOneRecept()
     {
         if (!receptOnePotion.activeSelf)
@@ -297,5 +303,10 @@ public class Interface : MonoBehaviour {
     public void PrevPage()
     {
         invPanel.GetComponent<Inventory>().PrevPage();
+    }
+
+    public void ShowRecepteByGrade(int grade)
+    {
+        this.GetComponent<ListRecipePotion>().FillRecepts(grade);
     }
 }

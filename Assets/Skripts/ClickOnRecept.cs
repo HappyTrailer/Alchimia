@@ -6,16 +6,20 @@ using UnityEngine.UI;
 public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
 {
     public GameObject container;
-    GameObject item;
     public GameObject itemPanel;
     public GameObject nameRecept;
     public GameObject sprite;
+    public GameObject buttonStart;
+
+    GameObject item;
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        container.SetActive(true);
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
-            Destroy(itemPanel.transform.GetChild(i).gameObject);
+            if (itemPanel.transform.GetChild(i).name != "Container")
+                Destroy(itemPanel.transform.GetChild(i).gameObject);
         }
         int idRecept = System.Convert.ToInt32(this.name);
 
@@ -31,6 +35,10 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
         }
         CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
+
+        buttonStart.AddComponent<StartCooki>().Recept = idRecept;
+
+        container.SetActive(false);
     }
 
     void CheckIngrInInventory(int[] mass)

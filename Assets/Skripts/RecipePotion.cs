@@ -10,6 +10,7 @@ public class RecipePotion : MonoBehaviour {
     string nameRicipe; // Название рецепта
     string sprite;
 
+    int grade;
     bool open;
     int[] idIngredient; //Масив ингредиентов необходимых 
     //для производства зелья
@@ -22,7 +23,8 @@ public class RecipePotion : MonoBehaviour {
                         string nameRicipe,
                         int[] idIngredient,
                         bool open,
-                        string sprite
+                        string sprite,
+                        int grade
                         )
     {
         this.id = id;
@@ -32,6 +34,7 @@ public class RecipePotion : MonoBehaviour {
         this.idIngredient = idIngredient;
         this.open = open;
         this.sprite = sprite;
+        this.grade = grade;
     }
 
     public string Sprite
@@ -57,5 +60,10 @@ public class RecipePotion : MonoBehaviour {
     public int[] Mass
     {
         get { return idIngredient; }
+    }
+
+    public int Grade
+    {
+        get { return grade; }
     }
 }
