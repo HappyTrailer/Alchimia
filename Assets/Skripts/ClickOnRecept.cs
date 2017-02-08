@@ -16,11 +16,12 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
             Destroy(itemPanel.transform.GetChild(i).gameObject);
-            Debug.Log(i);
         }
         int idRecept = System.Convert.ToInt32(this.name);
+
         sprite.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListRecipePotion.masRecPotion[idRecept].Sprite);
         nameRecept.GetComponent<Text>().text = ListRecipePotion.masRecPotion[idRecept].NameRec;
+
         foreach (int id in ListRecipePotion.masRecPotion[idRecept].Mass)
         {
             item = Instantiate(container);
@@ -29,5 +30,48 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
         }
+        CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
     }
+
+    void CheckIngrInInventory(int[] mass)
+    {
+        int index = 0;
+        int count = 0;
+        ItemsInInventary[] buff = new ItemsInInventary[mass.Length];
+        //============================================
+        for (int i = 0; i < mass.Length; i++)
+        {
+            if (mass[i] != -1)
+            {
+               
+                count++;
+                for (int j = i + 1; j < mass.Length; j++)
+                {
+                    if (mass[i] == mass[j])
+                    {
+                        count++;
+                        mass[j] = -1;
+                    }
+                }
+
+                buff[index] = new ItemsInInventary( mass[i] , count);
+                index++;
+                count = 0;
+            }
+        }
+        for (int i = 0; i < buff.Length; i++)
+        {
+            if(buff[i] != null)
+            Debug.Log(buff[i].Id + " --- " + buff[i].Count);
+        }
+
+            //foreach (ItemsInInventary item in Inventory.listItem)
+            //{
+            //    if (item.Id == mass[index])
+            //    {
+
+            //    }
+            //}
+
+        }
 }

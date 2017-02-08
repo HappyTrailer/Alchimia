@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour {
 
     public int page;
     public int nextItem;
-    List<ItemsInInventary> listItem;
+    public static List<ItemsInInventary> listItem;
     GameObject itemsPanel;
 
 	void Start () 

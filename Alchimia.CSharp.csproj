@@ -66,9 +66,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Skripts\ClickOnRecept.cs" />
     <Compile Include="Assets\Skripts\CookyTool.cs" />
     <Compile Include="Assets\Skripts\Ingredient.cs" />
     <Compile Include="Assets\Skripts\Interface.cs" />
+    <Compile Include="Assets\Skripts\Inventory.cs" />
+    <Compile Include="Assets\Skripts\ItemsInInventary.cs" />
     <Compile Include="Assets\Skripts\ListIngredients.cs" />
     <Compile Include="Assets\Skripts\ListPotion.cs" />
     <Compile Include="Assets\Skripts\ListRecipeIngredint.cs" />
