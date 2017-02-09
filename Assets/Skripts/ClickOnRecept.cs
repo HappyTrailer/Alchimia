@@ -36,7 +36,7 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
         }
         CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
 
-        buttonStart.AddComponent<StartCooki>().Recept = idRecept;
+        buttonStart.GetComponent<StartCooki>().Recept = idRecept;
 
         container.SetActive(false);
     }
@@ -69,17 +69,8 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
         }
         for (int i = 0; i < buff.Length; i++)
         {
-            if(buff[i] != null)
-            Debug.Log(buff[i].Id + " --- " + buff[i].Count);
+            /*if(buff[i] != null)
+            Debug.Log(buff[i].Id + " --- " + buff[i].Count);*/
         }
-
-            //foreach (ItemsInInventary item in Inventory.listItem)
-            //{
-            //    if (item.Id == mass[index])
-            //    {
-
-            //    }
-            //}
-
-        }
+    }
 }

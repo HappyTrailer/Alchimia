@@ -6,6 +6,7 @@ public class Interface : MonoBehaviour {
 
     public GameObject receptPotion;
     public GameObject receptOnePotion;
+    public GameObject receptOnePotionCooking;
 
     public GameObject tradeCooki;
     public GameObject tradeStudy;
@@ -51,7 +52,12 @@ public class Interface : MonoBehaviour {
         if (animMenu.GetCurrentAnimatorStateInfo(0).IsName("ReceptOpen") && animMenu.GetBool("Recept") && !receptOnePotion.activeSelf)
         {
             if (animMenu.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-                receptPotion.SetActive(true);
+            {
+                if (StartCooki.globalReceptId == -1)
+                    receptPotion.SetActive(true);
+                else
+                    receptOnePotionCooking.SetActive(true);
+            }
         }
     }
 
@@ -69,7 +75,10 @@ public class Interface : MonoBehaviour {
             receptOnePotion.SetActive(true);
         }
         else
+        {
+            Debug.Log("False");
             receptOnePotion.SetActive(false);
+        }
     }
 
     public void ShowRecept()
@@ -84,6 +93,17 @@ public class Interface : MonoBehaviour {
 
         animMenu.transform.FindChild("Recept").GetComponentInChildren<Button>().enabled = animMenu.GetBool("Recept");
         animMenu.SetBool("Recept", !animMenu.GetBool("Recept"));
+    }
+
+    public void ShowReceptCooking()
+    {
+        if (animMenu.GetBool("Recept"))
+        {
+            receptOnePotionCooking.SetActive(false);
+            animMenu.SetTrigger("ReceptClose");
+        }
+        animMenu.transform.FindChild("Recept").GetComponentInChildren<Button>().enabled = true;
+        animMenu.SetBool("Recept", false);
     }
 
     public void ShowMenu()
