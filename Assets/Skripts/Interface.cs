@@ -75,10 +75,7 @@ public class Interface : MonoBehaviour {
             receptOnePotion.SetActive(true);
         }
         else
-        {
-            Debug.Log("False");
             receptOnePotion.SetActive(false);
-        }
     }
 
     public void ShowRecept()

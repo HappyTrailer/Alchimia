@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Linq;
 
 public class StartCooki : MonoBehaviour, IPointerClickHandler {
 
@@ -48,45 +49,24 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler {
 
     public void IngridientsToCooki()
     {
-        if (ListRecipePotion.masRecPotion[receptId].Mass.Length == 2)
+        int[] mass = new int[3];
+        int i = 0;
+        int pos = 0;
+        foreach (int id in ListRecipePotion.masRecPotion[receptId].Mass)
         {
-            ingridients.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[0]].Sprite);
-            ingridients.transform.GetChild(0).GetChild(0).name = ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[0]].Name;
-            ingridients.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[1]].Sprite);
-            ingridients.transform.GetChild(1).GetChild(0).name = ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[1]].Name;
-        }
-        else
-        {
-            int i = 0;
-            while(true)
+            do
             {
-                int pos = Random.Range(0, 3);
-                if (ingridients.transform.GetChild(pos).GetChild(0).name == "Image")
+                pos = Random.Range(1, 4);
+                if (!mass.Contains(pos))
                 {
-                    switch (pos)
-                    {
-                        case 0:
-                            ingridients.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[i]].Sprite);
-                            ingridients.transform.GetChild(0).GetChild(0).name = ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[i]].Name;
-                            i++;
-                            break;
-                        case 1:
-                            ingridients.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[i]].Sprite);
-                            ingridients.transform.GetChild(1).GetChild(0).name = ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[i]].Name;
-                            i++;
-                            break;
-                        case 2:
-                            ingridients.transform.GetChild(2).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[i]].Sprite);
-                            ingridients.transform.GetChild(2).GetChild(0).name = ListIngredients.masIngredient[ListRecipePotion.masRecPotion[receptId].Mass[i]].Name;
-                            i++;
-                            break;
-                    }
+                    mass[i] = pos;
+                    ingridients.transform.GetChild(pos - 1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
+                    ingridients.transform.GetChild(pos - 1).GetChild(0).GetComponent<CookingIngridient>().Ingr = id;
                 }
-                if(i == 3)
-                {
-                    break;
-                }
-            }
+            } while(mass[i] != pos);
+            if (i == 2)
+                break;
+            i++;
         }
     }
 }

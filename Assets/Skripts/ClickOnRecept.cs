@@ -34,7 +34,7 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
         }
-        CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
+        //CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
 
         buttonStart.GetComponent<StartCooki>().Recept = idRecept;
 
@@ -51,7 +51,6 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
         {
             if (mass[i] != -1)
             {
-               
                 count++;
                 for (int j = i + 1; j < mass.Length; j++)
                 {
@@ -61,16 +60,10 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
                         mass[j] = -1;
                     }
                 }
-
-                buff[index] = new ItemsInInventary( mass[i] , count);
+                buff[index] = new ItemsInInventary(mass[i], count);
                 index++;
                 count = 0;
             }
-        }
-        for (int i = 0; i < buff.Length; i++)
-        {
-            /*if(buff[i] != null)
-            Debug.Log(buff[i].Id + " --- " + buff[i].Count);*/
         }
     }
 }
