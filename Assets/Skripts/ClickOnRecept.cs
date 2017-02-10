@@ -34,18 +34,23 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
         }
-        //CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
+        CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
 
         buttonStart.GetComponent<StartCooki>().Recept = idRecept;
 
         container.SetActive(false);
     }
 
-    void CheckIngrInInventory(int[] mass)
+    void CheckIngrInInventory(int[] mass1)
     {
         int index = 0;
         int count = 0;
-        ItemsInInventary[] buff = new ItemsInInventary[mass.Length];
+        ItemsInInventary[] buff = new ItemsInInventary[mass1.Length];
+        int[] mass = new int[mass1.Length];
+        for (int i = 0; i < mass1.Length; i++)
+        {
+            mass[i] = mass1[i];
+        }
         //============================================
         for (int i = 0; i < mass.Length; i++)
         {
@@ -64,6 +69,31 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
                 index++;
                 count = 0;
             }
+        }
+        for (int i = 0; i < mass.Length; i++)
+        {
+            if (buff[i] != null)
+            {
+                foreach (var item in Inventory.listItem)
+                {
+                    if (buff[i].Id == item.Id && buff[i].Count <= item.Count)
+                    {
+                        Debug.Log(buff[i].Id + " in recept = " + buff[i].Count + " enaf in inventory = " + item.Count);
+                        buff[i].EnafFlag = true;
+                    }
+                    else if (buff[i].Id == item.Id && buff[i].Count > item.Count)
+                    {
+                        Debug.Log(buff[i].Id + " in recept = " + buff[i].Count + "not enaf in inventory = " + item.Count);
+                        buff[i].EnafFlag = false;
+                    }
+                }
+                if (!buff[i].EnafFlag)
+                {
+                    Debug.Log(buff[i].Id + " in recept = " + buff[i].Count + " —- in inventory = 0");
+                }
+            }
+            else
+                Debug.Log(i + " - null");
         }
     }
 }

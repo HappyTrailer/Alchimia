@@ -4,12 +4,14 @@ using System.Collections;
 public class ItemsInInventary {
 
     int id;
-    int count;
+    int count; 
+    bool enafFlag;
 
     public ItemsInInventary(int id, int count)
     {
         this.id = id;
         this.count = count;
+        this.enafFlag = false;
     }
 
     public int Id
@@ -20,5 +22,11 @@ public class ItemsInInventary {
     public int Count
     {
         get { return count; }
+    }
+
+    public bool EnafFlag
+    {
+        get { return enafFlag; }
+        set { enafFlag = value; }
     }
 }
