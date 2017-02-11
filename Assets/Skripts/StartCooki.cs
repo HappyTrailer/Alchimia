@@ -39,6 +39,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler {
         {
             item = Instantiate(container);
             item.transform.parent = itemPanel.transform;
+               //item.name = ListIngredients.masIngredient[id].Name;
             item.transform.localScale = new Vector3(1, 1, 1);
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
