@@ -29,7 +29,7 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
         foreach (int id in ListRecipePotion.masRecPotion[idRecept].Mass)
         {
             item = Instantiate(container);
-            item.name = ListIngredients.masIngredient[id].Name;
+            item.name = ListIngredients.masIngredient[id].Id.ToString();
             item.transform.parent = itemPanel.transform;
             item.transform.localScale = new Vector3(1, 1, 1);
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
@@ -79,36 +79,35 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
                 {
                     if (buff[i].Id == item.Id && buff[i].Count <= item.Count)
                     {
-                        //Debug.Log(buff[i].Id + " in recept = " + buff[i].Count + " enaf in inventory = " + item.Count);
                         buff[i].EnafFlag = true;
                     }
                     else if (buff[i].Id == item.Id && buff[i].Count > item.Count)
                     {
-                        //Debug.Log(buff[i].Id + " in recept = " + buff[i].Count + "not enaf in inventory = " + item.Count);
                         buff[i].EnafFlag = false;
-                        Debug.Log(itemPanel.name + "none");
-                        itemPanel.transform.GetChild(i+1).transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/red cross");
-
                     }
                 }
                 if (!buff[i].EnafFlag)
                 {
-                    Debug.Log(itemPanel.name + "none");
-                    //Debug.Log(buff[i].Id + " in recept = " + buff[i].Count + " —- in inventory = 0");
-                    itemPanel.transform.GetChild(i+1).transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/red cross");
-
+                    buff[i].EnafFlag = false;
                 }
             }
-            else
-                Debug.Log(i + " - null");
+
         }
 
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
-
-            itemPanel.transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/red cross");
+            for (int j = 0; j < buff.Length; j++)
+                if (buff[j] != null)
+                {
+                    if (itemPanel.transform.GetChild(i).name == buff[j].Id.ToString() && !buff[j].EnafFlag)
+                    {
+                        itemPanel.transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/red cross");
+                    }
+                }
+                else
+                    break;
         }
-        
+
 
     }
 }

@@ -57,4 +57,8 @@ public class Ingredient {
     {
         get { return nameIngr; }
     }
+    public int Id
+    {
+        get { return id; }
+    }
 }
