@@ -67,6 +67,12 @@ public class Interface : MonoBehaviour {
         ShowRecept();
     }
 
+    public void CancelRecept()
+    {
+        StartCooki.CancelCooki();
+        receptOnePotionCooking.SetActive(false);
+    }
+
     public void ShowOneRecept()
     {
         if (!receptOnePotion.activeSelf)
@@ -101,15 +107,6 @@ public class Interface : MonoBehaviour {
         }
         animMenu.transform.FindChild("Recept").GetComponentInChildren<Button>().enabled = true;
         animMenu.SetBool("Recept", false);
-    }
-
-    public void ShowMenu()
-    {
-        if (animMenu.GetBool("Opened"))
-            animMenu.SetTrigger("MenuClose");
-        else
-            animMenu.SetTrigger("MenuOpen");
-        animMenu.SetBool("Opened", !animMenu.GetBool("Opened"));
     }
 
     public void ShowTwoMenu()

@@ -4,17 +4,23 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using System.Linq;
 
-public class StartCooki : MonoBehaviour, IPointerClickHandler {
-
+public class StartCooki : MonoBehaviour, IPointerClickHandler
+{
     public static int globalReceptId = -1;
     public GameObject container;
     public GameObject itemPanel;
     public GameObject nameRecept;
     public GameObject sprite;
-    public GameObject ingridients;
+    public GameObject globalIngr;
+    public static GameObject ingridients;
 
     int receptId = -1;
     GameObject item;
+
+    void Start()
+    {
+        ingridients = globalIngr;
+    }
 
     public int Recept
     {
@@ -39,7 +45,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler {
         {
             item = Instantiate(container);
             item.transform.parent = itemPanel.transform;
-               //item.name = ListIngredients.masIngredient[id].Name;
+            item.name = ListIngredients.masIngredient[id].Name;
             item.transform.localScale = new Vector3(1, 1, 1);
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
@@ -62,12 +68,28 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler {
                 {
                     mass[i] = pos;
                     ingridients.transform.GetChild(pos - 1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
-                    ingridients.transform.GetChild(pos - 1).GetChild(0).GetComponent<CookingIngridient>().Ingr = id;
+                    ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled = true;
+                    ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().Ingr = id;
                 }
-            } while(mass[i] != pos);
+            } while (mass[i] != pos);
             if (i == 2)
                 break;
             i++;
+        }
+        CookingIngridient.IngrMass = ListRecipePotion.masRecPotion[receptId].Mass;
+        if(ListRecipePotion.masRecPotion[receptId].Mass.Length <= 3)
+            CookingIngridient.NextIngrId = -1;
+        else
+            CookingIngridient.NextIngrId = 3;
+    }
+
+    public static void CancelCooki()
+    {
+        StartCooki.globalReceptId = -1;
+        for (int i = 0; i < ingridients.transform.childCount; i++)
+        {
+            ingridients.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
+            ingridients.transform.GetChild(i).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled = false;
         }
     }
 }

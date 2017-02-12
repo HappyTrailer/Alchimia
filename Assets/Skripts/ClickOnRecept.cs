@@ -15,13 +15,14 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        idRecept = System.Convert.ToInt32(this.name);
+
         container.SetActive(true);
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
             if (itemPanel.transform.GetChild(i).name != "Container")
                 Destroy(itemPanel.transform.GetChild(i).gameObject);
         }
-        idRecept = System.Convert.ToInt32(this.name);
 
         sprite.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListRecipePotion.masRecPotion[idRecept].Sprite);
         nameRecept.GetComponent<Text>().text = ListRecipePotion.masRecPotion[idRecept].NameRec;
@@ -35,9 +36,10 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
         }
-        CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
-
         buttonStart.GetComponent<StartCooki>().Recept = idRecept;
+        buttonStart.GetComponent<Image>().color = new Color32(255, 255, 255, 255);
+
+        CheckIngrInInventory(ListRecipePotion.masRecPotion[idRecept].Mass);
 
         container.SetActive(false);
     }
@@ -91,9 +93,7 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
                     buff[i].EnafFlag = false;
                 }
             }
-
         }
-
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
             for (int j = 0; j < buff.Length; j++)
@@ -102,12 +102,14 @@ public class ClickOnRecept : MonoBehaviour, IPointerClickHandler
                     if (itemPanel.transform.GetChild(i).name == buff[j].Id.ToString() && !buff[j].EnafFlag)
                     {
                         itemPanel.transform.GetChild(i).transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/red cross");
+                        buttonStart.GetComponent<StartCooki>().enabled = false;
+                        buttonStart.GetComponent<Button>().enabled = false;
+                        buttonStart.GetComponent<Image>().color = new Color32(255, 0, 0, 255);
                     }
                 }
                 else
                     break;
         }
-
 
     }
 }
