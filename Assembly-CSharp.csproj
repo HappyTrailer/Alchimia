@@ -62,7 +62,9 @@
      <Compile Include="Assets\Skripts\RecipePotion.cs" />
      <Compile Include="Assets\Skripts\ResearchTools.cs" />
      <Compile Include="Assets\Skripts\StartCooki.cs" />
+     <Compile Include="Assets\Skripts\Timer.cs" />
      <Compile Include="Assets\Skripts\Trader.cs" />
+     <Compile Include="Assets\Tasks.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

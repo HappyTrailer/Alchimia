@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointerDownHandler, IPointerUpHandler
 {
-    static float R;
-    static float G;
-    static float B;
+    public static float R;
+    public static float G;
+    public static float B;
     public Text text;
     public GameObject circle;
 

@@ -61,4 +61,16 @@ public class Ingredient {
     {
         get { return id; }
     }
+    public int Red
+    {
+        get { return R; }
+    }
+    public int Green
+    {
+        get { return G; }
+    }
+    public int Blue
+    {
+        get { return B; }
+    }
 }

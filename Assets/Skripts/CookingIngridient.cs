@@ -42,10 +42,15 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, /*IDropHandler,*/ 
         set { ingridientId = value; }
     }
 
-    
-
     public void UseIngridient()
     {
+        CookyTool.R += ListIngredients.masIngredient[ingridientId].Red;
+        CookyTool.G += ListIngredients.masIngredient[ingridientId].Green;
+        CookyTool.B += ListIngredients.masIngredient[ingridientId].Blue;
+
+        Timer.flag = true;
+        Timer.timer = 10;
+
         transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
         gameObject.GetComponent<CookingIngridient>().enabled = false;
         if (nextIngrId != -1)
