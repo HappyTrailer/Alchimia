@@ -49,6 +49,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             item.transform.localScale = new Vector3(1, 1, 1);
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
+            item.transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
         }
         container.SetActive(false);
         IngridientsToCooki();
@@ -70,6 +71,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
                     ingridients.transform.GetChild(pos - 1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
                     ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled = true;
                     ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().Ingr = id;
+                    ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().Order = i + 1;
                 }
             } while (mass[i] != pos);
             if (i == 2)
@@ -77,6 +79,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             i++;
         }
         CookingIngridient.IngrMass = ListRecipePotion.masRecPotion[receptId].Mass;
+        CookingIngridient.ItemPanel = itemPanel;
         if(ListRecipePotion.masRecPotion[receptId].Mass.Length <= 3)
             CookingIngridient.NextIngrId = -1;
         else

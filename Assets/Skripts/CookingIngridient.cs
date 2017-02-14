@@ -4,12 +4,14 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
 
-public class CookingIngridient : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointerDownHandler, IPointerUpHandler
+public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
 {
     Vector2 startPos;
     int ingridientId;
+    int ingridientOrder;
     static int[] ingridients;
-    static int nextIngrId; 
+    static int nextIngrId;
+    static GameObject itemPanel;
 
     void Start() 
     {
@@ -28,6 +30,11 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, /*IDropHandler,*/ 
         }
     }
 
+    public static GameObject ItemPanel
+    {
+        set { itemPanel = value; }
+    }
+
     public static int NextIngrId
     {
         set
@@ -42,6 +49,12 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, /*IDropHandler,*/ 
         set { ingridientId = value; }
     }
 
+    public int Order
+    {
+        get { return ingridientOrder; }
+        set { ingridientOrder = value; }
+    }
+
     public void UseIngridient()
     {
         CookyTool.R += ListIngredients.masIngredient[ingridientId].Red;
@@ -50,6 +63,11 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, /*IDropHandler,*/ 
 
         Timer.flag = true;
         Timer.timer = 10;
+        Timer.obj.SetActive(true);
+
+        itemPanel.transform.GetChild(ingridientOrder).GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 100);
+        itemPanel.transform.GetChild(ingridientOrder).GetChild(1).GetComponent<Text>().color = new Color32(255, 255, 255, 100);
+        itemPanel.transform.GetChild(ingridientOrder).GetChild(2).GetComponent<Image>().color = new Color32(255, 255, 255, 100);
 
         transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
         gameObject.GetComponent<CookingIngridient>().enabled = false;
@@ -91,7 +109,8 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, /*IDropHandler,*/ 
         RaycastHit2D hit = Physics2D.Raycast(test, (Input.mousePosition));
         if (hit.collider && hit.collider.name == "Kettle")
         {
-            UseIngridient(); 
+            if (!Timer.flag)
+                UseIngridient(); 
         }
         transform.position = startPos;
     }
