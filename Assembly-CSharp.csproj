@@ -57,12 +57,14 @@
      <Compile Include="Assets\Skripts\ListPotion.cs" />
      <Compile Include="Assets\Skripts\ListRecipeIngredint.cs" />
      <Compile Include="Assets\Skripts\ListRecipePotion.cs" />
+     <Compile Include="Assets\Skripts\Money.cs" />
      <Compile Include="Assets\Skripts\Potion.cs" />
      <Compile Include="Assets\Skripts\RecipeIngredient.cs" />
      <Compile Include="Assets\Skripts\RecipePotion.cs" />
      <Compile Include="Assets\Skripts\ResearchTools.cs" />
      <Compile Include="Assets\Skripts\StartCooki.cs" />
      <Compile Include="Assets\Skripts\Timer.cs" />
+     <Compile Include="Assets\Skripts\TradeIngridients.cs" />
      <Compile Include="Assets\Skripts\Trader.cs" />
      <Compile Include="Assets\Tasks.cs" />
  <Reference Include="UnityEngine.UI">
