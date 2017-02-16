@@ -73,4 +73,8 @@ public class Ingredient {
     {
         get { return B; }
     }
+    public int Price
+    {
+        get { return price; }
+    }
 }

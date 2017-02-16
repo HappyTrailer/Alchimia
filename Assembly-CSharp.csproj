@@ -65,6 +65,8 @@
      <Compile Include="Assets\Skripts\StartCooki.cs" />
      <Compile Include="Assets\Skripts\Timer.cs" />
      <Compile Include="Assets\Skripts\TradeIngridients.cs" />
+     <Compile Include="Assets\Skripts\TradeStudy.cs" />
+     <Compile Include="Assets\Skripts\TradeTools.cs" />
      <Compile Include="Assets\Skripts\Trader.cs" />
      <Compile Include="Assets\Tasks.cs" />
  <Reference Include="UnityEngine.UI">

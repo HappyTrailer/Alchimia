@@ -81,6 +81,21 @@ public class TradeIngridients : MonoBehaviour
 
     void BuyIngtidient(int id)
     {
-        Debug.Log(id);
+        if (Money.money >= ListIngredients.masIngredient[id].Price)
+        {
+            bool flag = false;
+            Money.money -= ListIngredients.masIngredient[id].Price;
+            for (int i = 0; i < Inventory.listItem.Count; i++)
+            {
+                if (Inventory.listItem[i].Id == id)
+                {
+                    Inventory.listItem[i].Count++;
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+                Inventory.listItem.Add(new ItemsInInventary(id, 1));
+        }
     }
 }

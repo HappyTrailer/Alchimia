@@ -22,6 +22,7 @@ public class ItemsInInventary {
     public int Count
     {
         get { return count; }
+        set { count = value; }
     }
 
     public bool EnafFlag
