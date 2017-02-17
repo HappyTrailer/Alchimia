@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointerDownHandler, IPointerUpHandler
 {
+    public static bool last = false;
     public static float R;
     public static float G;
     public static float B;
@@ -29,6 +30,13 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
             text.text = G.ToString("F0");
         else if (this.name == "B")
             text.text = B.ToString("F0");
+
+        if(last && R == 0 && G == 0 && B == 0) // условие выполнения зелья
+        {
+            // просчет качества и цены зелья
+            Money.money += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price;
+            StartCooki.CancelCooki();
+        }
     }
 
     public void OnDrag(PointerEventData eventData)

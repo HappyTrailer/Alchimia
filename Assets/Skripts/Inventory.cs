@@ -27,13 +27,41 @@ public class Inventory : MonoBehaviour {
         {
             itemsPanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
             itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = "";
+            itemsPanel.transform.GetChild(i).GetComponent<Button>().onClick.RemoveAllListeners();
+            itemsPanel.transform.GetChild(i).GetComponent<Button>().enabled = false;
         }
         for (int i = 0; i < 9; i++)
         {
             if (i < listItem.Count)
             {
+                int temp = listItem[nextItem + i].Id;
                 itemsPanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[listItem[nextItem + i].Id].Sprite);
                 itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = listItem[nextItem + i].Count.ToString();
+                itemsPanel.transform.GetChild(i).GetComponent<Button>().enabled = true;
+                itemsPanel.transform.GetChild(i).GetComponent<Button>().onClick.AddListener(() => { SellItem(temp); });
+            }
+        }
+    }
+
+    void SellItem(int id)
+    {
+        Debug.Log(id);
+        Money.money += ListIngredients.masIngredient[id].Price;
+        for (int i = 0; i < Inventory.listItem.Count; i++)
+        {
+            if (listItem[i].Id == id)
+            {
+                if (listItem[i].Count >= 1)
+                {
+                    listItem[i].Count--;
+                    itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = listItem[i].Count.ToString();
+                }
+                else
+                {
+                    listItem.RemoveAt(i);
+                    FillInventory();
+                }
+                break;
             }
         }
     }
