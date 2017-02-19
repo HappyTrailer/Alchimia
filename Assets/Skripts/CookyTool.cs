@@ -41,33 +41,38 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
 
     public void OnDrag(PointerEventData eventData)
     {
-        float x = 0;
-        float y = 0;
+        if (Timer.flag)
+        {
+            float x = 0;
+            float y = 0;
 
-        if (transform.position.x > eventData.position.x)
-            x = transform.position.x - eventData.position.x;
+            if (transform.position.x > eventData.position.x)
+                x = transform.position.x - eventData.position.x;
+            else
+                x = eventData.position.x - transform.position.x;
+            if (transform.position.y > eventData.position.y)
+                y = transform.position.y - eventData.position.y;
+            else
+                y = eventData.position.y - transform.position.y;
+
+            if (this.name == "R")
+                R -= (x + y) / 100;
+            else if (this.name == "G")
+                G -= (x + y) / 100;
+            else if (this.name == "B")
+                B -= (x + y) / 100;
+
+            if (R < 0)
+                R = 255;
+            else if (G < 0)
+                G = 255;
+            else if (B < 0)
+                B = 255;
+
+            transform.position = eventData.position;
+        }
         else
-            x = eventData.position.x - transform.position.x;
-        if (transform.position.y > eventData.position.y)
-            y = transform.position.y - eventData.position.y;
-        else
-            y = eventData.position.y - transform.position.y;
-
-        if (this.name == "R")
-            R -= (x + y) / 100;
-        else if (this.name == "G")
-            G -= (x + y) / 100;
-        else if (this.name == "B")
-            B -= (x + y) / 100;
-
-        if (R < 0)
-            R = 255;
-        else if (G < 0)
-            G = 255;
-        else if (B < 0)
-            B = 255;
-
-        transform.position = eventData.position;
+            transform.position = startPos;
     }
 
     /*public void OnDrop(PointerEventData eventData)
@@ -77,7 +82,10 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        if (Timer.flag)
+        {
+            transform.position = eventData.position;
+        }
     }
 
     public void OnPointerUp(PointerEventData eventData)
