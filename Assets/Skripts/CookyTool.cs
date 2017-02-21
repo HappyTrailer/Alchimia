@@ -5,38 +5,40 @@ using UnityEngine.UI;
 
 public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointerDownHandler, IPointerUpHandler
 {
-    public static bool last = false;
     public static float R;
     public static float G;
     public static float B;
+    public static float R2;
+    public static float G2;
+    public static float B2;
     public Text text;
     public GameObject circle;
+    public bool vectorR;
+    public bool vectorG;
+    public bool vectorB;
+    public float speedR;
+    public float speedG;
+    public float speedB;
 
     Vector3 startPos;
 
 	void Start () {
         startPos = transform.position;
-        R = 0;
-        G = 0;
-        B = 0;
+        Reset();
+        speedR = 100;
+        speedG = 100;
+        speedB = 100;
 	}
 
     void Update()
     {
         circle.GetComponent<Image>().color = new Color32(System.Convert.ToByte(R), System.Convert.ToByte(G), System.Convert.ToByte(B), 255);
         if(this.name == "R")
-            text.text = R.ToString("F0");
+            text.text = R2.ToString("F0");
         else if(this.name == "G")
-            text.text = G.ToString("F0");
+            text.text = G2.ToString("F0");
         else if (this.name == "B")
-            text.text = B.ToString("F0");
-
-        if(last && R == 0 && G == 0 && B == 0) // условие выполнения зелья
-        {
-            // просчет качества и цены зелья
-            Money.money += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price;
-            StartCooki.CancelCooki();
-        }
+            text.text = B2.ToString("F0");
     }
 
     public void OnDrag(PointerEventData eventData)
@@ -55,19 +57,7 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
             else
                 y = eventData.position.y - transform.position.y;
 
-            if (this.name == "R")
-                R -= (x + y) / 100;
-            else if (this.name == "G")
-                G -= (x + y) / 100;
-            else if (this.name == "B")
-                B -= (x + y) / 100;
-
-            if (R < 0)
-                R = 255;
-            else if (G < 0)
-                G = 255;
-            else if (B < 0)
-                B = 255;
+            ChangeColor(x, y);
 
             transform.position = eventData.position;
         }
@@ -91,5 +81,61 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
     public void OnPointerUp(PointerEventData eventData)
     {
         transform.position = startPos;
+    }
+
+    public static void Reset()
+    {
+        R2 = 0;
+        G2 = 0;
+        B2 = 0;
+        R = 58;
+        G = 190;
+        B = 255;
+    }
+
+    public void ChangeVector(ref bool vector, ref float color, float x, float y, float speed)
+    {
+        if (vector)
+        {
+            color += (x + y) / speed;
+            if (color >= 255)
+            {
+                vector = false;
+                color = 255;
+            }
+        }
+        else
+        {
+            color -= (x + y) / speed;
+            if (color <= 0)
+            {
+                vector = true;
+                color = 0;
+            }
+        }
+    }
+
+    public void ChangeColor(float x, float y)
+    {
+        if (this.name == "R")
+            R2 -= (x + y) / speedR;
+        else if (this.name == "G")
+            G2 -= (x + y) / speedG;
+        else if (this.name == "B")
+            B2 -= (x + y) / speedB;
+
+        if (R2 < 0)
+            R2 = 0;
+        else if (G2 < 0)
+            G2 = 0;
+        else if (B2 < 0)
+            B2 = 0;
+
+        if (this.name == "R" && R2 != 0)
+            ChangeVector(ref vectorR, ref R, x, y, speedR);
+        else if (this.name == "G" && G2 != 0)
+            ChangeVector(ref vectorG, ref G, x, y, speedG);
+        else if (this.name == "B" && B2 != 0)
+            ChangeVector(ref vectorB, ref B, x, y, speedB);
     }
 }

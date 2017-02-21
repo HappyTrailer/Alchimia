@@ -10,7 +10,7 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
     int ingridientId;
     int ingridientOrder;
     static int[] ingridients;
-    static int nextIngrId;
+    public static int nextIngrId;
     static GameObject itemPanel;
 
     void Start() 
@@ -57,9 +57,9 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
 
     public void UseIngridient()
     {
-        CookyTool.R += ListIngredients.masIngredient[ingridientId].Red;
-        CookyTool.G += ListIngredients.masIngredient[ingridientId].Green;
-        CookyTool.B += ListIngredients.masIngredient[ingridientId].Blue;
+        CookyTool.R2 += ListIngredients.masIngredient[ingridientId].Red;
+        CookyTool.G2 += ListIngredients.masIngredient[ingridientId].Green;
+        CookyTool.B2 += ListIngredients.masIngredient[ingridientId].Blue;
 
         Timer.flag = true;
         Timer.timer = 10;
@@ -109,8 +109,7 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
         RaycastHit2D hit = Physics2D.Raycast(test, (Input.mousePosition));
         if (hit.collider && hit.collider.name == "Kettle")
         {
-            if (!Timer.flag)
-                UseIngridient(); 
+            UseIngridient(); 
         }
         transform.position = startPos;
     }

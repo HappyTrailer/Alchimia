@@ -28,6 +28,19 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
         get { return receptId; }
     }
 
+    public static bool LastIngridients()
+    {
+        int a = 0;
+        for (int i = 0; i < ingridients.transform.childCount; i++)
+        {
+            if (ingridients.transform.GetChild(i).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled == true)
+                a++;
+        }
+        if(a > 0)
+            return false;
+        return true;
+    }
+
     public void OnPointerClick(PointerEventData eventData)
     {
         globalReceptId = receptId;
@@ -80,6 +93,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
         }
         CookingIngridient.IngrMass = ListRecipePotion.masRecPotion[receptId].Mass;
         CookingIngridient.ItemPanel = itemPanel;
+        Timer.Activate();
         if(ListRecipePotion.masRecPotion[receptId].Mass.Length <= 3)
             CookingIngridient.NextIngrId = -1;
         else
@@ -94,5 +108,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             ingridients.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
             ingridients.transform.GetChild(i).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled = false;
         }
+        CookyTool.Reset();
+        Timer.DeActivate();
     }
 }
