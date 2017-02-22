@@ -18,7 +18,7 @@ public class TradeIngridients : MonoBehaviour
     void Start()
     {
         timer = 600;
-        FillShop();
+        //FillShop();
 	}
 
     void Update()

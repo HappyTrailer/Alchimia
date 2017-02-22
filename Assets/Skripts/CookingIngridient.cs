@@ -57,37 +57,44 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
 
     public void UseIngridient()
     {
-        CookyTool.R2 += ListIngredients.masIngredient[ingridientId].Red;
-        CookyTool.G2 += ListIngredients.masIngredient[ingridientId].Green;
-        CookyTool.B2 += ListIngredients.masIngredient[ingridientId].Blue;
-
-        Timer.flag = true;
-        Timer.timer = 10;
-        Timer.obj.SetActive(true);
-
-        itemPanel.transform.GetChild(ingridientOrder).GetChild(0).GetComponent<Image>().color = new Color32(255, 255, 255, 100);
-        itemPanel.transform.GetChild(ingridientOrder).GetChild(1).GetComponent<Text>().color = new Color32(255, 255, 255, 100);
-        itemPanel.transform.GetChild(ingridientOrder).GetChild(2).GetComponent<Image>().color = new Color32(255, 255, 255, 100);
+        CookyTool.ChangeRGB(ingridientId);
+        Timer.TimerStart();
 
         transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
         gameObject.GetComponent<CookingIngridient>().enabled = false;
-        if (nextIngrId != -1)
+
+        for (int i = 0; i < ingridients.Length; i++)
         {
-            for (int i = 0; i < ingridients.Length; i++)
+            if (ingridients[i] != -1)
             {
-                if (ingridients[i] == ingridientId)
+                if (ingridients[i] != System.Convert.ToInt32(gameObject.name))
                 {
-                    ingridients[i] = -1;
+                    Timer.countWrongIngridients++;
+                    Debug.Log(Timer.countWrongIngridients);
+                } 
+                break;
+            }
+        }
+
+        for (int i = 0; i < ingridients.Length; i++)
+        {
+            if (ingridients[i] == ingridientId)
+            {
+                if (nextIngrId != -1)
+                {
+                    ingridients[i] = -1; 
+                    gameObject.name = ListIngredients.masIngredient[ingridients[nextIngrId]].Id.ToString();
                     GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ingridients[nextIngrId]].Sprite);
                     GetComponent<CookingIngridient>().enabled = true;
                     GetComponent<CookingIngridient>().Ingr = ingridients[nextIngrId];
-                    break;
+                    if (nextIngrId < ingridients.Length - 1)
+                        nextIngrId++;
+                    else
+                        nextIngrId = -1;
                 }
+                itemPanel.transform.GetChild(i + 1).gameObject.SetActive(false);
+                break;
             }
-            if (nextIngrId < ingridients.Length - 1)
-                nextIngrId++;
-            else
-                nextIngrId = -1;
         }
     }
 

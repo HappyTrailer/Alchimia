@@ -84,7 +84,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
                     ingridients.transform.GetChild(pos - 1).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
                     ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled = true;
                     ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().Ingr = id;
-                    ingridients.transform.GetChild(pos - 1).GetChild(0).gameObject.GetComponent<CookingIngridient>().Order = i + 1;
+                    ingridients.transform.GetChild(pos - 1).GetChild(0).name = id.ToString();
                 }
             } while (mass[i] != pos);
             if (i == 2)

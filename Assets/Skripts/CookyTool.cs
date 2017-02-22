@@ -41,6 +41,13 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
             text.text = B2.ToString("F0");
     }
 
+    public static void ChangeRGB(int ingridientId)
+    {
+        R2 += ListIngredients.masIngredient[ingridientId].Red;
+        G2 += ListIngredients.masIngredient[ingridientId].Green;
+        B2 += ListIngredients.masIngredient[ingridientId].Blue;
+    }
+
     public void OnDrag(PointerEventData eventData)
     {
         if (Timer.flag)
