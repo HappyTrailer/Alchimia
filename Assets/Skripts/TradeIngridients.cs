@@ -12,13 +12,12 @@ public class TradeIngridients : MonoBehaviour
     public GameObject txt;
 
     GameObject item;
-    int randomIngr;
     float timer;
 
     void Start()
     {
         timer = 600;
-        //FillShop();
+        FillShop();
 	}
 
     void Update()
@@ -39,7 +38,6 @@ public class TradeIngridients : MonoBehaviour
     public void FillShop()
     {
         container.SetActive(true);
-        randomIngr = Random.Range(4, 10);
         for (int i = 0; i < itemsPanel.transform.childCount; i++)
         {
             if (itemsPanel.transform.GetChild(i).name != "Container")
@@ -56,6 +54,7 @@ public class TradeIngridients : MonoBehaviour
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[i].Name;
             item.transform.GetChild(2).GetComponent<Button>().onClick.AddListener(() => { BuyIngtidient(temp); });
         }
+        int randomIngr = Random.Range(4, 9);
         int[] mass = new int[randomIngr];
         int id = 0;
         for (int i = 0; i < randomIngr; i++)

@@ -13,13 +13,11 @@ public class Timer : MonoBehaviour {
     public static GameObject obj;
     public Slider slider;
     public GameObject sliderPabel;
-    public static int countIngridientsForOneStep;
-    public static int countWrongIngridients;
+    public static int countIngridientsForOneStep = 0;
+    public static int countWrongIngridients = 0;
 
     void Start()
     {
-        countWrongIngridients = 0;
-        countIngridientsForOneStep = 0;
         globalSlider = slider;
         globalSliderPanel = sliderPabel;
         obj = gameObject;
@@ -53,16 +51,20 @@ public class Timer : MonoBehaviour {
     {
         float buff = 1.0f / (float)ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Mass.Length;
         if (managed)
+        {
+            gradeValuePotion += buff / 2 * countWrongIngridients;
+            countIngridientsForOneStep -= countWrongIngridients;
             gradeValuePotion += buff * countIngridientsForOneStep;
+        }
         else
             gradeValuePotion -= buff * countIngridientsForOneStep;
         slider.value = gradeValuePotion;
         if(StartCooki.LastIngridients())
         {
             Money.money += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade();
-            Debug.Log(countWrongIngridients);
             StartCooki.CancelCooki();
         }
+        countWrongIngridients = 0;
         countIngridientsForOneStep = 0;
         flag = false;
         gameObject.SetActive(false);
@@ -74,6 +76,14 @@ public class Timer : MonoBehaviour {
         flag = true;
         timer = 10;
         obj.SetActive(true);
+    }
+
+    public static void TimerStop()
+    {
+        countWrongIngridients = 0;
+        countIngridientsForOneStep = 0;
+        flag = false;
+        obj.SetActive(false);
     }
 
     public float GetGrade()
@@ -92,7 +102,7 @@ public class Timer : MonoBehaviour {
         return grade;
     }
 
-    public static void Activate()
+    public static void SliderActivate()
     {
         gradeValuePotion = 0.01f;
         globalSlider.gameObject.SetActive(true);
@@ -100,9 +110,8 @@ public class Timer : MonoBehaviour {
         globalSlider.value = gradeValuePotion;
     }
 
-    public static void DeActivate()
+    public static void SliderDeActivate()
     {
-        countWrongIngridients = 0;
         gradeValuePotion = 0.01f;
         globalSlider.gameObject.SetActive(false);
         globalSliderPanel.SetActive(false);

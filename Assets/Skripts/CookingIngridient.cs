@@ -62,7 +62,7 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
 
         transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
         gameObject.GetComponent<CookingIngridient>().enabled = false;
-
+        //======================================================================
         for (int i = 0; i < ingridients.Length; i++)
         {
             if (ingridients[i] != -1)
@@ -70,19 +70,18 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
                 if (ingridients[i] != System.Convert.ToInt32(gameObject.name))
                 {
                     Timer.countWrongIngridients++;
-                    Debug.Log(Timer.countWrongIngridients);
                 } 
                 break;
             }
         }
-
+        //======================================================================
         for (int i = 0; i < ingridients.Length; i++)
         {
             if (ingridients[i] == ingridientId)
             {
+                ingridients[i] = -1; 
                 if (nextIngrId != -1)
                 {
-                    ingridients[i] = -1; 
                     gameObject.name = ListIngredients.masIngredient[ingridients[nextIngrId]].Id.ToString();
                     GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ingridients[nextIngrId]].Sprite);
                     GetComponent<CookingIngridient>().enabled = true;
@@ -96,6 +95,7 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
                 break;
             }
         }
+        //======================================================================
     }
 
     public void OnDrag(PointerEventData eventData)

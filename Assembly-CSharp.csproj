@@ -62,6 +62,7 @@
      <Compile Include="Assets\Skripts\RecipeIngredient.cs" />
      <Compile Include="Assets\Skripts\RecipePotion.cs" />
      <Compile Include="Assets\Skripts\ResearchTools.cs" />
+     <Compile Include="Assets\Skripts\SphereScale.cs" />
      <Compile Include="Assets\Skripts\StartCooki.cs" />
      <Compile Include="Assets\Skripts\Timer.cs" />
      <Compile Include="Assets\Skripts\TradeIngridients.cs" />

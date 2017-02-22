@@ -21,7 +21,7 @@ public class ListIngredients : MonoBehaviour {
     {
         masIngredient = new Ingredient[]
         {
-            new Ingredient(0, 10, 10, 0, 1, 1, 1, "Соль", "Sprite/Ing/Salt", 10.0f, true),
+            new Ingredient(0, 150, 150, 150, 1, 1, 1, "Соль", "Sprite/Ing/Salt", 10.0f, true),
             new Ingredient(1, 0, 10, 10, 1, 1, 1, "Лаванда", "Sprite/Ing/Lavanda", 10.0f, true),
             new Ingredient(2, 0, 10, 5, 1, 1, 1, "Подорожник", "Sprite/Ing/Podorojnik", 10.0f, true),
 

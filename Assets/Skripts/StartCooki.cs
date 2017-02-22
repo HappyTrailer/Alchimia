@@ -93,7 +93,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
         }
         CookingIngridient.IngrMass = ListRecipePotion.masRecPotion[receptId].Mass;
         CookingIngridient.ItemPanel = itemPanel;
-        Timer.Activate();
+        Timer.SliderActivate();
         if(ListRecipePotion.masRecPotion[receptId].Mass.Length <= 3)
             CookingIngridient.NextIngrId = -1;
         else
@@ -109,6 +109,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             ingridients.transform.GetChild(i).GetChild(0).gameObject.GetComponent<CookingIngridient>().enabled = false;
         }
         CookyTool.Reset();
-        Timer.DeActivate();
+        Timer.TimerStop();
+        Timer.SliderDeActivate();
     }
 }
