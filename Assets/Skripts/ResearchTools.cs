@@ -12,8 +12,36 @@ public class ResearchTools : MonoBehaviour {
     
     int mortar1 = 1;
     int distiller = 1;
+    public static int maxCountIngridientInMortar = 10;
+    public static ItemsInInventary currentIngridient;
 
+    void Start() 
+    { 
+        currentIngridient = null;
+    }
 
+    public void StartResearch()
+    {
+        Debug.Log(currentIngridient.Id + " " + currentIngridient.Count);
+    }
+
+    public void CancelResearch()
+    {
+        bool exist = false;
+        foreach (ItemsInInventary item in Inventory.listItem)
+        {
+            if (item.Id == currentIngridient.Id)
+            {
+                exist = true;
+                item.Count += currentIngridient.Count;
+            }
+        }
+        if(!exist)
+        {
+            Inventory.listItem.Add(new ItemsInInventary(currentIngridient.Id, currentIngridient.Count));
+        }
+        currentIngridient = null;
+    }
     //Смеситель
     /*
      * 1. Добавление ингредиентов для исследования

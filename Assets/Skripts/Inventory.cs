@@ -15,13 +15,19 @@ public class Inventory : MonoBehaviour {
         page = 1;
         listItem = new List<ItemsInInventary>();
         listItem.Add(new ItemsInInventary(0, 10));
-        listItem.Add(new ItemsInInventary(1, 15));
+        listItem.Add(new ItemsInInventary(1, 5));
         listItem.Add(new ItemsInInventary(2, 20));
         itemsPanel = this.transform.GetChild(1).gameObject;
 	}
 
     public void FillInventory()
     {
+        for (int i = 0; i < Inventory.listItem.Count; i++)
+        {
+            if (listItem[i].Count <= 0)
+                listItem.RemoveAt(i);
+        }
+
         nextItem = (page * 9) - 9;
         for (int i = 0; i < 9; i++)
         {
@@ -45,22 +51,16 @@ public class Inventory : MonoBehaviour {
 
     void SellItem(int id)
     {
-        Debug.Log(id);
         Money.money += ListIngredients.masIngredient[id].Price;
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (listItem[i].Id == id)
             {
-                if (listItem[i].Count >= 1)
-                {
-                    listItem[i].Count--;
+                listItem[i].Count--;
+                if (listItem[i].Count > 1)
                     itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = listItem[i].Count.ToString();
-                }
                 else
-                {
-                    listItem.RemoveAt(i);
                     FillInventory();
-                }
                 break;
             }
         }
