@@ -10,16 +10,19 @@ public class InventoryForStudy : MonoBehaviour
     public GameObject container;
 
     GameObject item;
-    float buff;
 
     void Update()
     {
         scrollerIngridientCount.transform.GetChild(5).GetComponent<Text>().text = scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value.ToString();
-        buff = scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value;
     }
 
     public void ShowIngridient(int grade)
     {
+        for (int i = 0; i < Inventory.listItem.Count; i++)
+        {
+            if (Inventory.listItem[i].Count <= 0)
+                Inventory.listItem.RemoveAt(i);
+        }
         container.SetActive(true);
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
@@ -48,6 +51,7 @@ public class InventoryForStudy : MonoBehaviour
 
     public void ShowScrollerIngridientCount(int id)
     {
+        scrollerIngridientCount.transform.GetChild(3).GetComponent<Button>().onClick.RemoveAllListeners();
         foreach(ItemsInInventary item in Inventory.listItem)
         {
             if (item.Id == id)
@@ -59,13 +63,14 @@ public class InventoryForStudy : MonoBehaviour
                     scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = ResearchTools.maxCountIngridientInMortar;
                 else
                     scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = item.Count;
-                scrollerIngridientCount.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(() => { IngridientsToTools(buff, buffId); });
+                scrollerIngridientCount.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(() => { IngridientsToTools(buffId); });
             }
         }
     }
 
-    public void IngridientsToTools(float count, int id)
+    public void IngridientsToTools(int id)
     {
+        float count = scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value;
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (Inventory.listItem[i].Id == id)

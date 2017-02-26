@@ -15,7 +15,7 @@ public class Inventory : MonoBehaviour {
         page = 1;
         listItem = new List<ItemsInInventary>();
         listItem.Add(new ItemsInInventary(0, 10));
-        listItem.Add(new ItemsInInventary(1, 5));
+        listItem.Add(new ItemsInInventary(1, 50));
         listItem.Add(new ItemsInInventary(2, 20));
         itemsPanel = this.transform.GetChild(1).gameObject;
 	}

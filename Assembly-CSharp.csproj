@@ -49,6 +49,7 @@
      <Compile Include="Assets\Skripts\ClickOnRecept.cs" />
      <Compile Include="Assets\Skripts\CookingIngridient.cs" />
      <Compile Include="Assets\Skripts\CookyTool.cs" />
+     <Compile Include="Assets\Skripts\HelpReceptIngridient.cs" />
      <Compile Include="Assets\Skripts\Ingredient.cs" />
      <Compile Include="Assets\Skripts\Interface.cs" />
      <Compile Include="Assets\Skripts\Inventory.cs" />
@@ -60,6 +61,7 @@
      <Compile Include="Assets\Skripts\ListRecipePotion.cs" />
      <Compile Include="Assets\Skripts\Money.cs" />
      <Compile Include="Assets\Skripts\Potion.cs" />
+     <Compile Include="Assets\Skripts\ReceptIngridientPanel.cs" />
      <Compile Include="Assets\Skripts\RecipeIngredient.cs" />
      <Compile Include="Assets\Skripts\RecipePotion.cs" />
      <Compile Include="Assets\Skripts\ResearchTools.cs" />

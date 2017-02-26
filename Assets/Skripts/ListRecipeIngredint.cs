@@ -3,7 +3,7 @@ using System.Collections;
 
 public class ListRecipeIngredint : MonoBehaviour {
     //Класс содержит в себе масив рецептов ингредиентов
-    RecipeIngredint[] masRecIngr;
+    public static RecipeIngredint[] masRecIngr;
 
     void Start()
     {
@@ -14,6 +14,8 @@ public class ListRecipeIngredint : MonoBehaviour {
     {
         masRecIngr = new RecipeIngredint[] {
             new RecipeIngredint(0, 0, 1, 3),
+            new RecipeIngredint(8, 1, 2, 3),
+            new RecipeIngredint(9, 1, 1, 3),
             new RecipeIngredint(1, 3, 1, 4),
             new RecipeIngredint(2, 2, 3, 5),
             new RecipeIngredint(3, 3, 4, 6),

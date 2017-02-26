@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class ResearchTools : MonoBehaviour {
     //в классе информация о исследовательских инструментах
@@ -16,13 +17,75 @@ public class ResearchTools : MonoBehaviour {
     public static ItemsInInventary currentIngridient;
 
     void Start() 
-    { 
+    {
         currentIngridient = null;
     }
 
     public void StartResearch()
     {
-        Debug.Log(currentIngridient.Id + " " + currentIngridient.Count);
+        RecipeIngredint[] buff = new RecipeIngredint[ListRecipeIngredint.masRecIngr.Length];
+        int k = 0;
+        for(int i = 0; i < buff.Length; i++)
+        {
+            if(currentIngridient.Id == ListRecipeIngredint.masRecIngr[i].IdFirstIngredient || 
+                currentIngridient.Id == ListRecipeIngredint.masRecIngr[i].IdSecondInredient)
+            {
+                if (ListIngredients.masIngredient[ListRecipeIngredint.masRecIngr[i].IdFirstIngredient].Opened &&
+                    ListIngredients.masIngredient[ListRecipeIngredint.masRecIngr[i].IdSecondInredient].Opened)
+                {
+                    buff[k] = ListRecipeIngredint.masRecIngr[i];
+                    k++;
+                }  
+            }
+        }
+        float chance = currentIngridient.Count * ListIngredients.masIngredient[currentIngridient.Id].Percent;
+        float rand = Random.Range(0, 1001);
+        float number = 1000 * chance;
+        if (rand <= number)
+        {
+            OpenHelp(buff, k);
+        }
+        currentIngridient = null;
+    }
+
+    void OpenHelp(RecipeIngredint[] mass, int k)
+    {
+        int index = 0;
+        bool flag = true;
+        if (ReceptIngridientPanel.listHRI == null)
+            ReceptIngridientPanel.listHRI = new List<HelpReceptIngridient>();
+        if (ReceptIngridientPanel.listHRI.Count != 0)
+        {
+            for (int i = 0; i < k; i++)
+            {
+                foreach (HelpReceptIngridient h in ReceptIngridientPanel.listHRI)
+                {
+                    if (mass[i].Id == h.Recept && (h.R1 || h.G1))
+                    {
+                        if (h.R1)
+                        {
+                            h.R1 = false;
+                            flag = false;
+                        }
+                        else if (h.G1)
+                        {
+                            h.G1 = false;
+                            flag = false;
+                        }
+                        break;
+                    }
+                    else if (mass[i].Id == h.Recept && !h.R1 && !h.G1)
+                    {
+                        index++;
+                        break;
+                    }
+                }
+            }
+            if (flag && mass[index] != null)
+                ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[index].Id, currentIngridient.Id, false, true, true));
+        }
+        else if (mass[0] != null)
+            ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[0].Id, currentIngridient.Id, false, true, true));
     }
 
     public void CancelResearch()

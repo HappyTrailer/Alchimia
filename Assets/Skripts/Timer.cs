@@ -8,21 +8,17 @@ public class Timer : MonoBehaviour {
     public static float timer;
     public static float gradeValuePotion;
     public static bool flag;
-    public static Slider globalSlider;
-    public static GameObject globalSliderPanel;
     public static GameObject obj;
-    public Slider slider;
-    public GameObject sliderPabel;
     public static int countIngridientsForOneStep = 0;
     public static int countWrongIngridients = 0;
+
+    public Slider slider;
+    public static Slider globalSlider;
 
     void Start()
     {
         globalSlider = slider;
-        globalSliderPanel = sliderPabel;
         obj = gameObject;
-        slider.gameObject.SetActive(false);
-        sliderPabel.SetActive(false);
         gameObject.SetActive(false);
     }
 	
@@ -105,16 +101,12 @@ public class Timer : MonoBehaviour {
     public static void SliderActivate()
     {
         gradeValuePotion = 0.01f;
-        globalSlider.gameObject.SetActive(true);
-        globalSliderPanel.SetActive(true);
         globalSlider.value = gradeValuePotion;
     }
 
     public static void SliderDeActivate()
     {
         gradeValuePotion = 0.01f;
-        globalSlider.gameObject.SetActive(false);
-        globalSliderPanel.SetActive(false);
         globalSlider.value = gradeValuePotion;
     }
 }

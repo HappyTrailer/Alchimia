@@ -15,7 +15,7 @@ public class Ingredient {
     //-----------------------------------
     int price;   // цена 
     int grade;   // градация уровня ингреиента(1-4)
-    int percent; //процент удачного исследования
+    float percent; //процент удачного исследования
 
     string nameIngr;   //Название
     string spritePath; //Путь к спрайту
@@ -29,7 +29,7 @@ public class Ingredient {
         int R, int G, int B,
         int price,
         int grade,
-        int percent,
+        float percent,
         string nameIngr,
         string spritePath,
         float time,
@@ -80,5 +80,17 @@ public class Ingredient {
     public int Grade
     {
         get { return grade; }
+    }
+
+    public bool Opened
+    {
+        get { return opened; }
+        set { opened = value; }
+    }
+
+    public float Percent
+    {
+        get { return percent; }
+        set { percent = value; }
     }
 }

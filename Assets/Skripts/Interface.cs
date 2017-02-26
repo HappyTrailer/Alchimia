@@ -244,6 +244,7 @@ public class Interface : MonoBehaviour {
         else
             animRecepts.SetTrigger("StudyClose");
         animRecepts.SetBool("Opened", !animRecepts.GetBool("Opened"));
+        animRecepts.GetComponent<ReceptIngridientPanel>().FillRecepts();
     }
 
     public void ShowTradeMenu()

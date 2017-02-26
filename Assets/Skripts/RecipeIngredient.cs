@@ -21,4 +21,28 @@ public class RecipeIngredint  {
         this.idSecondInredient = idSecondInredient;
         this.idResultIngredient = idResultIngredient;
     }
+
+    public int Id
+    {
+        get { return id; }
+        set { id = value; }
+    }
+
+    public int IdResultIngredient
+    {
+        get { return idResultIngredient; }
+        set { idResultIngredient = value; }
+    }
+
+    public int IdSecondInredient
+    {
+        get { return idSecondInredient; }
+        set { idSecondInredient = value; }
+    }
+
+    public int IdFirstIngredient
+    {
+        get { return idFirstIngredient; }
+        set { idFirstIngredient = value; }
+    }
 }

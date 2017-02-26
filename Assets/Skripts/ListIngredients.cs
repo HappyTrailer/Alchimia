@@ -21,20 +21,20 @@ public class ListIngredients : MonoBehaviour {
     {
         masIngredient = new Ingredient[]
         {
-            new Ingredient(0, 150, 150, 150, 1, 1, 1, "Соль", "Sprite/Ing/Salt", 10.0f, true),
-            new Ingredient(1, 0, 10, 10, 1, 1, 1, "Лаванда", "Sprite/Ing/Lavanda", 10.0f, true),
-            new Ingredient(2, 0, 10, 5, 1, 1, 1, "Подорожник", "Sprite/Ing/Podorojnik", 10.0f, true),
+            new Ingredient(0, 150, 150, 150, 1, 1, 0.08f, "Соль", "Sprite/Ing/Salt", 10.0f, true),
+            new Ingredient(1, 0, 10, 10, 1, 1, 0.2f, "Лаванда", "Sprite/Ing/Lavanda", 10.0f, true),
+            new Ingredient(2, 0, 10, 5, 1, 1, 0.08f, "Подорожник", "Sprite/Ing/Podorojnik", 10.0f, true),
 
-            new Ingredient(3, 0, 10, 5, 2, 2, 2, "Орех", "Sprite/Ing/Oreh", 10.0f, false),
-            new Ingredient(4, 0, 10, 5, 2, 2, 2, "Поганки", "Sprite/Ing/Poganki", 10.0f, false),
-            new Ingredient(5, 0, 10, 5, 2, 2, 2, "Ежевика", "Sprite/Ing/Ejevika", 10.0f, false),
+            new Ingredient(3, 0, 10, 5, 2, 2, 0.07f, "Орех", "Sprite/Ing/Oreh", 10.0f, false),
+            new Ingredient(4, 0, 10, 5, 2, 2, 0.07f, "Поганки", "Sprite/Ing/Poganki", 10.0f, false),
+            new Ingredient(5, 0, 10, 5, 2, 2, 0.07f, "Ежевика", "Sprite/Ing/Ejevika", 10.0f, false),
 
-            new Ingredient(6, 0, 10, 5, 3, 3, 3, "Хмель", "Sprite/Ing/Hmel", 10.0f, false),
-            new Ingredient(7, 0, 10, 5, 3, 3, 3, "Кропива", "Sprite/Ing/Kropiva", 10.0f, false),
-            new Ingredient(8, 0, 10, 5, 3, 3, 3, "Бузина", "Sprite/Ing/Byzina", 10.0f, false),
+            new Ingredient(6, 0, 10, 5, 3, 3, 0.06f, "Хмель", "Sprite/Ing/Hmel", 10.0f, false),
+            new Ingredient(7, 0, 10, 5, 3, 3, 0.06f, "Кропива", "Sprite/Ing/Kropiva", 10.0f, false),
+            new Ingredient(8, 0, 10, 5, 3, 3, 0.06f, "Бузина", "Sprite/Ing/Byzina", 10.0f, false),
                 
-            new Ingredient(9, 0, 10, 5, 4, 4, 4, "Малахит", "Sprite/Ing/Malahit", 10.0f, false),
-            new Ingredient(10, 0, 10, 5, 4, 4, 4, "Золото", "Sprite/Ing/Gold", 10.0f, false),
+            new Ingredient(9, 0, 10, 5, 4, 4, 0.05f, "Малахит", "Sprite/Ing/Malahit", 10.0f, false),
+            new Ingredient(10, 0, 10, 5, 4, 4, 0.05f, "Золото", "Sprite/Ing/Gold", 10.0f, false),
         };
     }
 
