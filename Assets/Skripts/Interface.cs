@@ -185,23 +185,19 @@ public class Interface : MonoBehaviour {
     public void ShowStudy()
     {
         if (!animStudy.GetBool("Opened"))
+        {
             animStudy.SetTrigger("StudyOpen");
+            FirstOpen();
+        }
         else
             animStudy.SetTrigger("StudyClose");
         animStudy.SetBool("Opened", !animStudy.GetBool("Opened"));
-
-        study.transform.FindChild("Items").gameObject.SetActive(false);
-        study.transform.FindChild("Start").gameObject.SetActive(false);
-        study.transform.FindChild("Cancel").gameObject.SetActive(false);
-        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
-        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
-        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
     }
 
     public void FirstOpen()
     {
         animStudy.SetTrigger("First");
-
+        ResearchTools.tool = "Mortar";
         study.transform.GetChild(0).GetComponent<Text>().text = "";
         study.transform.FindChild("Items").gameObject.SetActive(true);
         study.transform.FindChild("Start").gameObject.SetActive(false);
@@ -214,7 +210,7 @@ public class Interface : MonoBehaviour {
     public void TwoOpen()
     {
         animStudy.SetTrigger("Two");
-
+        ResearchTools.tool = "Distiller";
         study.transform.GetChild(0).GetComponent<Text>().text = "";
         study.transform.FindChild("Items").gameObject.SetActive(true);
         study.transform.FindChild("Start").gameObject.SetActive(false);

@@ -15,6 +15,7 @@ public class ResearchTools : MonoBehaviour {
     int distiller = 1;
     public static int maxCountIngridientInMortar = 10;
     public static ItemsInInventary currentIngridient;
+    public static string tool;
 
     void Start() 
     {
@@ -43,12 +44,15 @@ public class ResearchTools : MonoBehaviour {
         float number = 1000 * chance;
         if (rand <= number)
         {
-            OpenHelp(buff, k);
+            if(tool == "Mortar")
+                OpenHelpMoratr(buff, k);
+            else if (tool == "Distiller")
+                OpenHelpDistiller(buff, k);
         }
         currentIngridient = null;
     }
 
-    void OpenHelp(RecipeIngredint[] mass, int k)
+    void OpenHelpDistiller(RecipeIngredint[] mass, int k)
     {
         int index = 0;
         bool flag = true;
@@ -60,6 +64,48 @@ public class ResearchTools : MonoBehaviour {
             {
                 foreach (HelpReceptIngridient h in ReceptIngridientPanel.listHRI)
                 {
+
+                    if (mass[i].Id == h.Recept && (h.B1 || h.G1))
+                    {
+                        if (h.B1)
+                        {
+                            h.B1 = false;
+                            flag = false;
+                        }
+                        else if (h.G1)
+                        {
+                            h.G1 = false;
+                            flag = false;
+                        }
+                        break;
+                    }
+                    else if (mass[i].Id == h.Recept && !h.B1 && !h.G1)
+                    {
+                        index++;
+                        break;
+                    }
+                }
+            }
+            if (flag && mass[index] != null)
+                ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[index].Id, currentIngridient.Id, true, true, false));
+        }
+        else if (mass[0] != null)
+            ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[0].Id, currentIngridient.Id, true, true, false));
+    }
+
+    void OpenHelpMoratr(RecipeIngredint[] mass, int k)
+    {
+        int index = 0;
+        bool flag = true;
+        if (ReceptIngridientPanel.listHRI == null)
+            ReceptIngridientPanel.listHRI = new List<HelpReceptIngridient>();
+        if (ReceptIngridientPanel.listHRI.Count != 0)
+        {
+            for (int i = 0; i < k; i++)
+            {
+                foreach (HelpReceptIngridient h in ReceptIngridientPanel.listHRI)
+                {
+
                     if (mass[i].Id == h.Recept && (h.R1 || h.G1))
                     {
                         if (h.R1)
