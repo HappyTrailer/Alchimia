@@ -10,14 +10,18 @@ public class InventoryForStudy : MonoBehaviour
     public GameObject container;
 
     GameObject item;
+    GameObject canvas;
+    int currentGrade;
 
     void Update()
     {
+        canvas = GameObject.Find("Canvas");
         scrollerIngridientCount.transform.GetChild(5).GetComponent<Text>().text = scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value.ToString();
     }
 
     public void ShowIngridient(int grade)
     {
+        currentGrade = grade;
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (Inventory.listItem[i].Count <= 0)
@@ -59,10 +63,21 @@ public class InventoryForStudy : MonoBehaviour
                 int buffId = item.Id;
                 scrollerIngridientCount.transform.GetChild(0).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[item.Id].Sprite);
                 scrollerIngridientCount.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[item.Id].Name;
-                if (item.Count > ResearchTools.maxCountIngridientInMortar)
-                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = ResearchTools.maxCountIngridientInMortar;
+                if (ResearchTools.tool == "Blender")
+                {
+                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = 1;
+                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value = 1;
+                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().enabled = false;
+                }
                 else
-                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = item.Count;
+                {
+                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().enabled = true;
+                    if (item.Count > ResearchTools.maxCountIngridientInMortar)
+                        scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = ResearchTools.maxCountIngridientInMortar;
+                    else
+                        scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = item.Count;
+
+                }
                 scrollerIngridientCount.transform.GetChild(3).GetComponent<Button>().onClick.AddListener(() => { IngridientsToTools(buffId); });
             }
         }
@@ -76,6 +91,25 @@ public class InventoryForStudy : MonoBehaviour
             if (Inventory.listItem[i].Id == id)
                 Inventory.listItem[i].Count -= (int)count;
         }
-        ResearchTools.currentIngridient = new ItemsInInventary(id, (int)count);
+        if (ResearchTools.tool == "Blender")
+        {
+            if(ResearchTools.currentIngridient == null)
+            {
+                ResearchTools.currentIngridient = new ItemsInInventary(id, (int)count);
+                canvas.GetComponent<Interface>().ShowScrollerIngridientCount(1);
+                ShowIngridient(currentGrade);
+            }
+            else
+            {
+                ResearchTools.currentIngridientSecond = new ItemsInInventary(id, (int)count);
+                canvas.GetComponent<Interface>().ShowScrollerIngridientCount(2);
+            }
+        }
+        else
+        {
+            ResearchTools.currentIngridient = new ItemsInInventary(id, (int)count);
+            ResearchTools.currentIngridientSecond = null;
+            canvas.GetComponent<Interface>().ShowScrollerIngridientCount(2);
+        }
     }
 }

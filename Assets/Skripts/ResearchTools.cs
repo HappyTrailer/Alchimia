@@ -15,41 +15,51 @@ public class ResearchTools : MonoBehaviour {
     int distiller = 1;
     public static int maxCountIngridientInMortar = 10;
     public static ItemsInInventary currentIngridient;
+    public static ItemsInInventary currentIngridientSecond;
     public static string tool;
 
     void Start() 
     {
         currentIngridient = null;
+        currentIngridientSecond = null;
     }
 
     public void StartResearch()
     {
-        RecipeIngredint[] buff = new RecipeIngredint[ListRecipeIngredint.masRecIngr.Length];
-        int k = 0;
-        for(int i = 0; i < buff.Length; i++)
+        if (tool == "Mortar" || tool == "Distiller")
         {
-            if(currentIngridient.Id == ListRecipeIngredint.masRecIngr[i].IdFirstIngredient || 
-                currentIngridient.Id == ListRecipeIngredint.masRecIngr[i].IdSecondInredient)
+            RecipeIngredint[] buff = new RecipeIngredint[ListRecipeIngredint.masRecIngr.Length];
+            int k = 0;
+            for (int i = 0; i < buff.Length; i++)
             {
-                if (ListIngredients.masIngredient[ListRecipeIngredint.masRecIngr[i].IdFirstIngredient].Opened &&
-                    ListIngredients.masIngredient[ListRecipeIngredint.masRecIngr[i].IdSecondInredient].Opened)
+                if (currentIngridient.Id == ListRecipeIngredint.masRecIngr[i].IdFirstIngredient ||
+                    currentIngridient.Id == ListRecipeIngredint.masRecIngr[i].IdSecondInredient)
                 {
-                    buff[k] = ListRecipeIngredint.masRecIngr[i];
-                    k++;
-                }  
+                    if (ListIngredients.masIngredient[ListRecipeIngredint.masRecIngr[i].IdFirstIngredient].Opened &&
+                        ListIngredients.masIngredient[ListRecipeIngredint.masRecIngr[i].IdSecondInredient].Opened)
+                    {
+                        buff[k] = ListRecipeIngredint.masRecIngr[i];
+                        k++;
+                    }
+                }
+            }
+            float chance = currentIngridient.Count * ListIngredients.masIngredient[currentIngridient.Id].Percent;
+            float rand = Random.Range(0, 1001);
+            float number = 1000 * chance;
+            if (rand <= number)
+            {
+                if (tool == "Mortar")
+                    OpenHelpMoratr(buff, k);
+                else if (tool == "Distiller")
+                    OpenHelpDistiller(buff, k);
             }
         }
-        float chance = currentIngridient.Count * ListIngredients.masIngredient[currentIngridient.Id].Percent;
-        float rand = Random.Range(0, 1001);
-        float number = 1000 * chance;
-        if (rand <= number)
+        else if (tool == "Blender")
         {
-            if(tool == "Mortar")
-                OpenHelpMoratr(buff, k);
-            else if (tool == "Distiller")
-                OpenHelpDistiller(buff, k);
+
         }
         currentIngridient = null;
+        currentIngridientSecond = null;
     }
 
     void OpenHelpDistiller(RecipeIngredint[] mass, int k)
@@ -150,6 +160,7 @@ public class ResearchTools : MonoBehaviour {
             Inventory.listItem.Add(new ItemsInInventary(currentIngridient.Id, currentIngridient.Count));
         }
         currentIngridient = null;
+        currentIngridientSecond = null;
     }
     //Смеситель
     /*

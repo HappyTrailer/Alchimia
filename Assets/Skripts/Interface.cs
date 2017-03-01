@@ -205,6 +205,8 @@ public class Interface : MonoBehaviour {
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = false;
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
+        ResearchTools.currentIngridient = null;
+        ResearchTools.currentIngridientSecond = null;
     }
 
     public void TwoOpen()
@@ -218,12 +220,14 @@ public class Interface : MonoBehaviour {
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = false;
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
+        ResearchTools.currentIngridient = null;
+        ResearchTools.currentIngridientSecond = null;
     }
 
     public void ThreeOpen()
     {
         animStudy.SetTrigger("Three");
-
+        ResearchTools.tool = "Blender";
         study.transform.GetChild(0).GetComponent<Text>().text = "";
         study.transform.FindChild("Items").gameObject.SetActive(true);
         study.transform.FindChild("Start").gameObject.SetActive(false);
@@ -231,6 +235,8 @@ public class Interface : MonoBehaviour {
         animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = false;
         animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
         animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
+        ResearchTools.currentIngridient = null;
+        ResearchTools.currentIngridientSecond = null;
     }
 
     public void ShowRecepts()
