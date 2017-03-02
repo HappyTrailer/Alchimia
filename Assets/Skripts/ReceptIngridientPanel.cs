@@ -26,6 +26,18 @@ public class ReceptIngridientPanel : MonoBehaviour
         }
         if (listHRI != null)
         {
+            for (int i = 0; i < ListIngredients.masIngredient.Length; i++)
+            {
+                if(ListIngredients.masIngredient[i].Opened)
+                {
+                    item = Instantiate(container);
+                    item.transform.name = "Item";
+                    item.transform.parent = itemsPanel.transform;
+                    item.transform.localScale = new Vector3(1, 1, 1);
+
+
+                }
+            }
             for (int i = 0; i < listHRI.Count; i++)
             {
                 item = Instantiate(container);

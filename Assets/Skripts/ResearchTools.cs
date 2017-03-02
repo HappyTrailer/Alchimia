@@ -56,7 +56,25 @@ public class ResearchTools : MonoBehaviour {
         }
         else if (tool == "Blender")
         {
-
+            foreach(RecipeIngredint ingr in ListRecipeIngredint.masRecIngr)
+            {
+                if (!ListIngredients.masIngredient[ingr.IdSecondInredient].Opened)
+                {
+                    if ((ingr.IdFirstIngredient == currentIngridient.Id && ingr.IdSecondInredient == currentIngridientSecond.Id)
+                        || (ingr.IdFirstIngredient == currentIngridientSecond.Id && ingr.IdSecondInredient == currentIngridient.Id))
+                    {
+                        ListIngredients.masIngredient[ingr.IdResultIngredient].Opened = true;
+                        for (int i = 0; i < ReceptIngridientPanel.listHRI.Count; i++)
+                        {
+                            if (ListRecipeIngredint.masRecIngr[ReceptIngridientPanel.listHRI[i].Recept].IdResultIngredient == ingr.IdResultIngredient)
+                            {
+                                ReceptIngridientPanel.listHRI.RemoveAt(i);
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
         }
         currentIngridient = null;
         currentIngridientSecond = null;
