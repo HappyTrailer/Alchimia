@@ -56,21 +56,32 @@ public class ResearchTools : MonoBehaviour {
         }
         else if (tool == "Blender")
         {
-            foreach(RecipeIngredint ingr in ListRecipeIngredint.masRecIngr)
+            if (ReceptIngridientPanel.listHRI == null)
+                ReceptIngridientPanel.listHRI = new List<HelpReceptIngridient>();
+            foreach(RecipeIngredint recept in ListRecipeIngredint.masRecIngr)
             {
-                if (!ListIngredients.masIngredient[ingr.IdSecondInredient].Opened)
+                if (!ListIngredients.masIngredient[recept.IdResultIngredient].Opened)
                 {
-                    if ((ingr.IdFirstIngredient == currentIngridient.Id && ingr.IdSecondInredient == currentIngridientSecond.Id)
-                        || (ingr.IdFirstIngredient == currentIngridientSecond.Id && ingr.IdSecondInredient == currentIngridient.Id))
+                    if ((recept.IdFirstIngredient == currentIngridient.Id || recept.IdFirstIngredient == currentIngridientSecond.Id)
+                        && (recept.IdSecondInredient == currentIngridient.Id || recept.IdSecondInredient == currentIngridient.Id))
                     {
-                        ListIngredients.masIngredient[ingr.IdResultIngredient].Opened = true;
+                        ListIngredients.masIngredient[recept.IdResultIngredient].Opened = true;
                         for (int i = 0; i < ReceptIngridientPanel.listHRI.Count; i++)
                         {
-                            if (ListRecipeIngredint.masRecIngr[ReceptIngridientPanel.listHRI[i].Recept].IdResultIngredient == ingr.IdResultIngredient)
-                            {
+                            if (ListRecipeIngredint.masRecIngr[ReceptIngridientPanel.listHRI[i].Recept].IdResultIngredient == recept.IdResultIngredient)
                                 ReceptIngridientPanel.listHRI.RemoveAt(i);
+                        }
+                        bool flag = false;
+                        for (int i = 0; i < Inventory.listItem.Count; i++)
+                        {
+                            if (Inventory.listItem[i].Id == recept.IdResultIngredient)
+                            {
+                                Inventory.listItem[i].Count++;
+                                break;
                             }
                         }
+                        if (!flag)
+                            Inventory.listItem.Add(new ItemsInInventary(recept.IdResultIngredient, 1));
                         break;
                     }
                 }

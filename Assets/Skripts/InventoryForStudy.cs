@@ -72,6 +72,7 @@ public class InventoryForStudy : MonoBehaviour
                 else
                 {
                     scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().enabled = true;
+                    scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().minValue = 1;
                     if (item.Count > ResearchTools.maxCountIngridientInMortar)
                         scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().maxValue = ResearchTools.maxCountIngridientInMortar;
                     else
