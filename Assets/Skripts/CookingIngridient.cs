@@ -12,6 +12,7 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
     static int[] ingridients;
     public static int nextIngrId;
     static GameObject itemPanel;
+    static GameObject itemPanelHelp;
 
     void Start() 
     {
@@ -33,6 +34,11 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
     public static GameObject ItemPanel
     {
         set { itemPanel = value; }
+    }
+
+    public static GameObject ItemPanelHelp
+    {
+        set { itemPanelHelp = value; }
     }
 
     public static int NextIngrId
@@ -91,6 +97,7 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
                     else
                         nextIngrId = -1;
                 }
+                itemPanelHelp.transform.GetChild(i + 1).gameObject.SetActive(false);
                 itemPanel.transform.GetChild(i + 1).gameObject.SetActive(false);
                 break;
             }

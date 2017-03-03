@@ -7,18 +7,23 @@ using System.Linq;
 public class StartCooki : MonoBehaviour, IPointerClickHandler
 {
     public static int globalReceptId = -1;
+    public GameObject containerHelp;
+    public GameObject itemPanelHelp;
     public GameObject container;
     public GameObject itemPanel;
     public GameObject nameRecept;
     public GameObject sprite;
     public GameObject globalIngr;
     public static GameObject ingridients;
+    public static GameObject globalItemPanelHelp;
 
     int receptId = -1;
     GameObject item;
+    GameObject itemHelp;
 
     void Start()
     {
+        globalItemPanelHelp = itemPanelHelp.transform.parent.parent.gameObject;
         ingridients = globalIngr;
     }
 
@@ -43,12 +48,19 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        itemPanelHelp.transform.parent.parent.gameObject.SetActive(true);
         globalReceptId = receptId;
         container.SetActive(true);
+        containerHelp.SetActive(true);
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
             if (itemPanel.transform.GetChild(i).name != "Container")
                 Destroy(itemPanel.transform.GetChild(i).gameObject);
+        }
+        for (int i = 0; i < itemPanelHelp.transform.childCount; i++)
+        {
+            if (itemPanelHelp.transform.GetChild(i).name != "Container")
+                Destroy(itemPanelHelp.transform.GetChild(i).gameObject);
         }
 
         sprite.GetComponent<Image>().sprite = Resources.Load<Sprite>(ListRecipePotion.masRecPotion[receptId].Sprite);
@@ -63,7 +75,15 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
             item.transform.GetChild(2).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
+
+            itemHelp = Instantiate(containerHelp);
+            itemHelp.transform.parent = itemPanelHelp.transform;
+            itemHelp.name = ListIngredients.masIngredient[id].Name;
+            itemHelp.transform.localScale = new Vector3(1, 1, 1);
+            itemHelp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
+            itemHelp.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
         }
+        containerHelp.SetActive(false);
         container.SetActive(false);
         IngridientsToCooki();
     }
@@ -93,6 +113,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
         }
         CookingIngridient.IngrMass = ListRecipePotion.masRecPotion[receptId].Mass;
         CookingIngridient.ItemPanel = itemPanel;
+        CookingIngridient.ItemPanelHelp = itemPanelHelp;
         Timer.SliderActivate();
         if(ListRecipePotion.masRecPotion[receptId].Mass.Length <= 3)
             CookingIngridient.NextIngrId = -1;
@@ -102,7 +123,8 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
 
     public static void CancelCooki()
     {
-        StartCooki.globalReceptId = -1;
+        globalReceptId = -1;
+        globalItemPanelHelp.SetActive(false);
         for (int i = 0; i < ingridients.transform.childCount; i++)
         {
             ingridients.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
