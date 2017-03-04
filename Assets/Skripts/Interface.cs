@@ -22,6 +22,8 @@ public class Interface : MonoBehaviour {
     public GameObject achPanel;
     public GameObject settPanel;
 
+    Animator animScrollerIngridientCount;
+    Animator animInventaryForStudy;
     Animator animTradeCooki;
     Animator animTradeStudy;
     Animator animTradeIngr;
@@ -36,6 +38,8 @@ public class Interface : MonoBehaviour {
 
     void Start()
     {
+        animScrollerIngridientCount = scrollerIngridientCount.GetComponent<Animator>();
+        animInventaryForStudy = inventaryForStudy.GetComponent<Animator>();
         animTradeCooki = tradeCooki.GetComponent<Animator>();
         animTradeStudy = tradeStudy.GetComponent<Animator>();
         animTradeIngr = tradeIngr.GetComponent<Animator>();
@@ -187,7 +191,12 @@ public class Interface : MonoBehaviour {
         if (!animStudy.GetBool("Opened"))
         {
             animStudy.SetTrigger("StudyOpen");
-            FirstOpen();
+            if (ResearchTools.tool == "Distiller")
+                TwoOpen();
+            else if (ResearchTools.tool == "Blender")
+                ThreeOpen();
+            else
+                FirstOpen();
         }
         else
             animStudy.SetTrigger("StudyClose");
@@ -340,17 +349,30 @@ public class Interface : MonoBehaviour {
 
     public void ShowInventaryForStudy()
     {
-        inventaryForStudy.SetActive(!inventaryForStudy.activeSelf);
+        if (!animInventaryForStudy.GetBool("Opened"))
+            animInventaryForStudy.SetTrigger("StudyOpen");
+        else
+            animInventaryForStudy.SetTrigger("StudyClose");
+        animInventaryForStudy.SetBool("Opened", !animInventaryForStudy.GetBool("Opened"));
         inventaryForStudy.GetComponent<InventoryForStudy>().ShowIngridient(1);
+    }
+
+    public void ShowScrollerAnim()
+    {
+        if (!animScrollerIngridientCount.GetBool("Opened"))
+            animScrollerIngridientCount.SetTrigger("StudyOpen");
+        else
+            animScrollerIngridientCount.SetTrigger("StudyClose");
+        animScrollerIngridientCount.SetBool("Opened", !animScrollerIngridientCount.GetBool("Opened"));
     }
 
     public void ShowScrollerIngridientCount(int param)
     {
         if(param == 1)
-            scrollerIngridientCount.SetActive(!scrollerIngridientCount.activeSelf);
+            ShowScrollerAnim();
         else if (param == 2)
         {
-            scrollerIngridientCount.SetActive(!scrollerIngridientCount.activeSelf);
+            ShowScrollerAnim();
             study.transform.FindChild("Items").gameObject.SetActive(false);
             study.transform.FindChild("Start").gameObject.SetActive(true);
             study.transform.FindChild("Cancel").gameObject.SetActive(true);
