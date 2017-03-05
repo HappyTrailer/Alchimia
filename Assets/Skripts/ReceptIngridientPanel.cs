@@ -59,6 +59,7 @@ public class ReceptIngridientPanel : MonoBehaviour
                 {
                     if(ListRecipeIngredint.masRecIngr[k].IdResultIngredient == ListIngredients.masIngredient[i].Id)
                     {
+                        int temp = ListIngredients.masIngredient[i].Id;
                         buff = ListRecipeIngredint.masRecIngr[k];
                         item = Instantiate(container);
                         item.transform.name = "Item";
@@ -76,10 +77,16 @@ public class ReceptIngridientPanel : MonoBehaviour
                         item.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdResultIngredient].Red.ToString();
                         item.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdResultIngredient].Green.ToString();
                         item.transform.GetChild(4).GetChild(2).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdResultIngredient].Blue.ToString();
+                        item.AddComponent<Button>().onClick.AddListener(() => { CraftIngr(temp); });
                         break;
                     }
                 }
             }
         }
+    }
+
+    public void CraftIngr(int id)
+    {
+
     }
 }
