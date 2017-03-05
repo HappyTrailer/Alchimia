@@ -11,7 +11,6 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
     int ingridientOrder;
     static int[] ingridients;
     public static int nextIngrId;
-    static GameObject itemPanel;
     static GameObject itemPanelHelp;
 
     void Start() 
@@ -29,11 +28,6 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
                 ingridients[i] = value[i];
             }
         }
-    }
-
-    public static GameObject ItemPanel
-    {
-        set { itemPanel = value; }
     }
 
     public static GameObject ItemPanelHelp
@@ -98,11 +92,18 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
                         nextIngrId = -1;
                 }
                 itemPanelHelp.transform.GetChild(i + 1).gameObject.SetActive(false);
-                itemPanel.transform.GetChild(i + 1).gameObject.SetActive(false);
                 break;
             }
         }
         //======================================================================
+        for (int i = 0; i < Inventory.listItem.Count; i++)
+        {
+            if (Inventory.listItem[i].Id == ingridientId)
+            {
+                Inventory.listItem[i].Count--;
+                break;
+            }
+        }
     }
 
     public void OnDrag(PointerEventData eventData)

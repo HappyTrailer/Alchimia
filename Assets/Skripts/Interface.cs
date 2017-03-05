@@ -6,7 +6,6 @@ public class Interface : MonoBehaviour {
 
     public GameObject receptPotion;
     public GameObject receptOnePotion;
-    public GameObject receptOnePotionCooking;
     public GameObject inventaryForStudy;
     public GameObject scrollerIngridientCount;
 
@@ -21,6 +20,10 @@ public class Interface : MonoBehaviour {
     public GameObject invPanel;
     public GameObject achPanel;
     public GameObject settPanel;
+    public GameObject cancelCooki;
+
+    public static GameObject globalCancelCooki;
+    public static GameObject globalMenuItems;
 
     Animator animScrollerIngridientCount;
     Animator animInventaryForStudy;
@@ -38,6 +41,8 @@ public class Interface : MonoBehaviour {
 
     void Start()
     {
+        globalCancelCooki = cancelCooki;
+        globalMenuItems = menuItems;
         animScrollerIngridientCount = scrollerIngridientCount.GetComponent<Animator>();
         animInventaryForStudy = inventaryForStudy.GetComponent<Animator>();
         animTradeCooki = tradeCooki.GetComponent<Animator>();
@@ -59,10 +64,7 @@ public class Interface : MonoBehaviour {
         {
             if (animMenu.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
             {
-                if (StartCooki.globalReceptId == -1)
-                    receptPotion.SetActive(true);
-                else
-                    receptOnePotionCooking.SetActive(true);
+                receptPotion.SetActive(true);
             }
         }
     }
@@ -76,7 +78,6 @@ public class Interface : MonoBehaviour {
     public void CancelRecept()
     {
         StartCooki.CancelCooki();
-        receptOnePotionCooking.SetActive(false);
     }
 
     public void ShowOneRecept()
@@ -102,17 +103,6 @@ public class Interface : MonoBehaviour {
 
         animMenu.transform.FindChild("Recept").GetComponentInChildren<Button>().enabled = animMenu.GetBool("Recept");
         animMenu.SetBool("Recept", !animMenu.GetBool("Recept"));
-    }
-
-    public void ShowReceptCooking()
-    {
-        if (animMenu.GetBool("Recept"))
-        {
-            receptOnePotionCooking.SetActive(false);
-            animMenu.SetTrigger("ReceptClose");
-        }
-        animMenu.transform.FindChild("Recept").GetComponentInChildren<Button>().enabled = true;
-        animMenu.SetBool("Recept", false);
     }
 
     public void ShowTwoMenu()
@@ -203,49 +193,68 @@ public class Interface : MonoBehaviour {
         animStudy.SetBool("Opened", !animStudy.GetBool("Opened"));
     }
 
+    public void TakeTool(string tool)
+    {
+        if (ResearchTools.currentIngridient == null)
+        {
+            if (tool == "Mortar")
+                FirstOpen();
+            else if (tool == "Distiller")
+                TwoOpen();
+            else if (tool == "Blender")
+                ThreeOpen();
+        }
+    }
+
     public void FirstOpen()
     {
         animStudy.SetTrigger("First");
         ResearchTools.tool = "Mortar";
-        study.transform.GetChild(0).GetComponent<Text>().text = "";
-        study.transform.FindChild("Items").gameObject.SetActive(true);
-        study.transform.FindChild("Start").gameObject.SetActive(false);
-        study.transform.FindChild("Cancel").gameObject.SetActive(false);
-        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = false;
-        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
-        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
-        ResearchTools.currentIngridient = null;
-        ResearchTools.currentIngridientSecond = null;
+        if (ResearchTools.currentIngridient == null)
+        {
+            study.transform.FindChild("Items").gameObject.SetActive(true);
+            study.transform.FindChild("Start").gameObject.SetActive(false);
+            study.transform.FindChild("Cancel").gameObject.SetActive(false);
+            animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = false;
+            animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
+            animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
+            ResearchTools.currentIngridient = null;
+            ResearchTools.currentIngridientSecond = null;
+        }
     }
 
     public void TwoOpen()
     {
         animStudy.SetTrigger("Two");
         ResearchTools.tool = "Distiller";
-        study.transform.GetChild(0).GetComponent<Text>().text = "";
-        study.transform.FindChild("Items").gameObject.SetActive(true);
-        study.transform.FindChild("Start").gameObject.SetActive(false);
-        study.transform.FindChild("Cancel").gameObject.SetActive(false);
-        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = false;
-        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
-        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
-        ResearchTools.currentIngridient = null;
-        ResearchTools.currentIngridientSecond = null;
+        if (ResearchTools.currentIngridient == null)
+        {
+            study.transform.FindChild("Items").gameObject.SetActive(true);
+            study.transform.FindChild("Start").gameObject.SetActive(false);
+            study.transform.FindChild("Cancel").gameObject.SetActive(false);
+            animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
+            animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = false;
+            animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = true;
+            ResearchTools.currentIngridient = null;
+            ResearchTools.currentIngridientSecond = null;
+        }
     }
 
     public void ThreeOpen()
     {
         animStudy.SetTrigger("Three");
         ResearchTools.tool = "Blender";
-        study.transform.GetChild(0).GetComponent<Text>().text = "";
-        study.transform.FindChild("Items").gameObject.SetActive(true);
-        study.transform.FindChild("Start").gameObject.SetActive(false);
-        study.transform.FindChild("Cancel").gameObject.SetActive(false);
-        animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = false;
-        animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
-        animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
-        ResearchTools.currentIngridient = null;
-        ResearchTools.currentIngridientSecond = null;
+        if (ResearchTools.currentIngridient == null)
+        {
+            study.transform.FindChild("Items").gameObject.SetActive(true);
+            study.transform.FindChild("Start").gameObject.SetActive(false);
+            study.transform.FindChild("Cancel").gameObject.SetActive(false);
+            animStudy.transform.FindChild("RGBState").FindChild("Red").GetComponentInChildren<Button>().enabled = true;
+            animStudy.transform.FindChild("RGBState").FindChild("Green").GetComponentInChildren<Button>().enabled = true;
+            animStudy.transform.FindChild("RGBState").FindChild("Blue").GetComponentInChildren<Button>().enabled = false;
+            ResearchTools.currentIngridient = null;
+            ResearchTools.currentIngridientSecond = null;
+        }
     }
 
     public void ShowRecepts()
