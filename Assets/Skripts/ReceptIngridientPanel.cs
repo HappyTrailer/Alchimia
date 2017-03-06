@@ -59,7 +59,9 @@ public class ReceptIngridientPanel : MonoBehaviour
                 {
                     if(ListRecipeIngredint.masRecIngr[k].IdResultIngredient == ListIngredients.masIngredient[i].Id)
                     {
-                        int temp = ListIngredients.masIngredient[i].Id;
+                        int reults = ListRecipeIngredint.masRecIngr[k].IdResultIngredient;
+                        int first = ListRecipeIngredint.masRecIngr[k].IdFirstIngredient;
+                        int second = ListRecipeIngredint.masRecIngr[k].IdSecondInredient;
                         buff = ListRecipeIngredint.masRecIngr[k];
                         item = Instantiate(container);
                         item.transform.name = "Item";
@@ -77,7 +79,7 @@ public class ReceptIngridientPanel : MonoBehaviour
                         item.transform.GetChild(4).GetChild(0).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdResultIngredient].Red.ToString();
                         item.transform.GetChild(4).GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdResultIngredient].Green.ToString();
                         item.transform.GetChild(4).GetChild(2).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdResultIngredient].Blue.ToString();
-                        item.AddComponent<Button>().onClick.AddListener(() => { CraftIngr(temp); });
+                        item.AddComponent<Button>().onClick.AddListener(() => { CraftIngr(reults, first, second); });
                         break;
                     }
                 }
@@ -85,8 +87,45 @@ public class ReceptIngridientPanel : MonoBehaviour
         }
     }
 
-    public void CraftIngr(int id)
+    public bool ChekIngrCount(int first, int second)
     {
+        bool f = false;
+        bool s = false;
+        for (int i = 0; i < Inventory.listItem.Count; i++)
+        {
+            if (Inventory.listItem[i].Id == first)
+                f = true;
+            if (Inventory.listItem[i].Id == second)
+                s = true;
+        }
+        if(f && s)
+            return true;
+        return false;
+    }
 
+    public void CraftIngr(int reults, int first, int second)
+    {
+        if (ChekIngrCount(first, second))
+        {
+            bool flag = false;
+            for (int i = 0; i < Inventory.listItem.Count; i++)
+            {
+                if (Inventory.listItem[i].Id == reults)
+                {
+                    Inventory.listItem[i].Count++;
+                    flag = true;
+                    break;
+                }
+            }
+            if (!flag)
+                Inventory.listItem.Add(new ItemsInInventary(reults, 1));
+            for (int i = 0; i < Inventory.listItem.Count; i++)
+            {
+                if (Inventory.listItem[i].Id == first)
+                    Inventory.listItem[i].Count -= 1;
+                if (Inventory.listItem[i].Id == second)
+                    Inventory.listItem[i].Count -= 1;
+            }
+        }
     }
 }

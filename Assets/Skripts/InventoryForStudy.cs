@@ -22,11 +22,6 @@ public class InventoryForStudy : MonoBehaviour
     public void ShowIngridient(int grade)
     {
         currentGrade = grade;
-        for (int i = 0; i < Inventory.listItem.Count; i++)
-        {
-            if (Inventory.listItem[i].Count <= 0)
-                Inventory.listItem.RemoveAt(i);
-        }
         container.SetActive(true);
         for (int i = 0; i < itemPanel.transform.childCount; i++)
         {
@@ -90,7 +85,10 @@ public class InventoryForStudy : MonoBehaviour
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (Inventory.listItem[i].Id == id)
+            {
                 Inventory.listItem[i].Count -= (int)count;
+                break;
+            }
         }
         if (ResearchTools.tool == "Blender")
         {

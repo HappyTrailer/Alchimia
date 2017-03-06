@@ -20,14 +20,17 @@ public class Inventory : MonoBehaviour {
         itemsPanel = this.transform.GetChild(1).gameObject;
 	}
 
-    public void FillInventory()
+    void Update()
     {
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (listItem[i].Count <= 0)
                 listItem.RemoveAt(i);
         }
+    }
 
+    public void FillInventory()
+    {
         nextItem = (page * 9) - 9;
         for (int i = 0; i < 9; i++)
         {
