@@ -66,6 +66,8 @@ public class ResearchTools : MonoBehaviour {
                         && (recept.IdSecondInredient == currentIngridient.Id || recept.IdSecondInredient == currentIngridient.Id))
                     {
                         ListIngredients.masIngredient[recept.IdResultIngredient].Opened = true;
+                        ListAchivments.ingridientOpenCount++;
+                        ListAchivments.ChekAchiv();
                         for (int i = 0; i < ReceptIngridientPanel.listHRI.Count; i++)
                         {
                             if (ListRecipeIngredint.masRecIngr[ReceptIngridientPanel.listHRI[i].Recept].IdResultIngredient == recept.IdResultIngredient)

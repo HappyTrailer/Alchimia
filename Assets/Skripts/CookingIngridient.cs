@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using System.Linq;
 
-public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandler, IPointerUpHandler
+public class CookingIngridient : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     Vector2 startPos;
     int ingridientId;
@@ -13,9 +13,17 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
     public static int nextIngrId;
     static GameObject itemPanelHelp;
 
+    bool drag;
+
     void Start() 
     {
         startPos = transform.position;
+    }
+
+    void Update()
+    {
+        if (drag)
+            transform.position = Input.mousePosition;
     }
 
     public static int[] IngrMass
@@ -59,6 +67,8 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
     {
         CookyTool.ChangeRGB(ingridientId);
         Timer.TimerStart();
+        ListAchivments.ingridientUseCount++;
+        ListAchivments.ChekAchiv();
 
         transform.GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
         gameObject.GetComponent<CookingIngridient>().enabled = false;
@@ -106,26 +116,20 @@ public class CookingIngridient : MonoBehaviour, IDragHandler, IPointerDownHandle
         }
     }
 
-    public void OnDrag(PointerEventData eventData)
-    {
-        transform.position = eventData.position;
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        drag = true;
+        transform.GetComponent<Image>().raycastTarget = false;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //Vector2 test = Camera.main.ScreenToWorldPoint(Input.GetTouch(0).position);
-        //RaycastHit2D hit = Physics2D.Raycast(test, (Input.GetTouch(0).position));
-        Vector2 test = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        RaycastHit2D hit = Physics2D.Raycast(test, (Input.mousePosition));
-        if (hit.collider && hit.collider.name == "Kettle")
+        if (eventData.pointerCurrentRaycast.gameObject.name == "Kettle")
         {
-            UseIngridient(); 
+            UseIngridient();
         }
+        drag = false;
+        transform.GetComponent<Image>().raycastTarget = true;
         transform.position = startPos;
     }
 }

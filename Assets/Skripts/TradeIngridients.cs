@@ -84,6 +84,9 @@ public class TradeIngridients : MonoBehaviour
         {
             bool flag = false;
             Money.money -= ListIngredients.masIngredient[id].Price;
+            ListAchivments.ingridientBuyCount++;
+            ListAchivments.moneySetCount += ListIngredients.masIngredient[id].Price;
+            ListAchivments.ChekAchiv();
             for (int i = 0; i < Inventory.listItem.Count; i++)
             {
                 if (Inventory.listItem[i].Id == id)

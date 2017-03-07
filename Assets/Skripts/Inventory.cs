@@ -54,7 +54,9 @@ public class Inventory : MonoBehaviour {
 
     void SellItem(int id)
     {
-        Money.money += ListIngredients.masIngredient[id].Price;
+        Money.money += ListIngredients.masIngredient[id].Price / 4;
+        ListAchivments.moneyGetCount += ListIngredients.masIngredient[id].Price;
+        ListAchivments.ChekAchiv();
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (listItem[i].Id == id)

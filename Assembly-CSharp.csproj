@@ -46,6 +46,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Skripts\Achivment.cs" />
+     <Compile Include="Assets\Skripts\AchivmentPanel.cs" />
      <Compile Include="Assets\Skripts\ClickOnRecept.cs" />
      <Compile Include="Assets\Skripts\CookingIngridient.cs" />
      <Compile Include="Assets\Skripts\CookyTool.cs" />
@@ -55,6 +57,7 @@
      <Compile Include="Assets\Skripts\Inventory.cs" />
      <Compile Include="Assets\Skripts\InventoryForStudy.cs" />
      <Compile Include="Assets\Skripts\ItemsInInventary.cs" />
+     <Compile Include="Assets\Skripts\ListAchivments.cs" />
      <Compile Include="Assets\Skripts\ListIngredients.cs" />
      <Compile Include="Assets\Skripts\ListPotion.cs" />
      <Compile Include="Assets\Skripts\ListRecipeIngredint.cs" />

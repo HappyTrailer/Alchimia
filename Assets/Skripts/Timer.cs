@@ -58,6 +58,9 @@ public class Timer : MonoBehaviour {
         if(StartCooki.LastIngridients())
         {
             Money.money += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade();
+            ListAchivments.moneyGetCount += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade();
+            ListAchivments.potionCookiCount++;
+            ListAchivments.ChekAchiv();
             StartCooki.CancelCooki();
         }
         countWrongIngridients = 0;

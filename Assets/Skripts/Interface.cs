@@ -145,6 +145,7 @@ public class Interface : MonoBehaviour {
             animSett.SetTrigger("Close");
             animSett.SetBool("Opened", false);
         }
+        achPanel.GetComponent<AchivmentPanel>().ShowAchivments();
     }
 
     public void ShowSettings()
