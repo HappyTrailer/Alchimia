@@ -12,6 +12,7 @@ public class Timer : MonoBehaviour {
     public static int countIngridientsForOneStep = 0;
     public static int countWrongIngridients = 0;
 
+    string gradeName;
     public Slider slider;
     public static Slider globalSlider;
 
@@ -61,6 +62,10 @@ public class Timer : MonoBehaviour {
             ListAchivments.moneyGetCount += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade();
             ListAchivments.potionCookiCount++;
             ListAchivments.ChekAchiv();
+
+            Messager.AddMess("Sprite/GameFiled/Research/flask_icon-icons.com_60843", "Создано: " + ListRecipePotion.masRecPotion[StartCooki.globalReceptId].NameRec, "Качество: " + gradeName);
+            Messager.AddMess("Sprite/GameFiled/Shop/dollar-round-icon--18", "Получены деньги", ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade() + " монет");
+
             StartCooki.CancelCooki();
         }
         countWrongIngridients = 0;
@@ -89,15 +94,30 @@ public class Timer : MonoBehaviour {
     {
         float grade = 0;
         if (gradeValuePotion <= 0.2f)
+        {
             grade = 0.2f;
+            gradeName = "Ужасное";
+        }
         else if (gradeValuePotion > 0.2f && gradeValuePotion <= 0.4f)
+        {
             grade = 0.5f;
+            gradeName = "Плохое";
+        }
         else if (gradeValuePotion > 0.4f && gradeValuePotion <= 0.6f)
+        {
             grade = 1f;
+            gradeName = "Обычное";
+        }
         else if (gradeValuePotion > 0.6f && gradeValuePotion <= 0.8f)
+        {
             grade = 1.5f;
+            gradeName = "Хорошее";
+        }
         else if (gradeValuePotion > 0.8f)
+        {
             grade = 2f;
+            gradeName = "Превосходное";
+        }
         return grade;
     }
 

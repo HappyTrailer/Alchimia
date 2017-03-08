@@ -48,6 +48,8 @@ public class ListAchivments : MonoBehaviour {
             {
                 Money.money += ListAchivments.masAchivments[i].Money;
                 ListAchivments.masAchivments[i].Done = true;
+                Messager.AddMess("Sprite/GameFiled/Inventory/Achievement_obtained_icon_TF2", "Получено достижение", ListAchivments.masAchivments[i].Name);
+                Messager.AddMess("Sprite/GameFiled/Shop/dollar-round-icon--18", "Получены деньги", ListAchivments.masAchivments[i].Money + " монет");
             }
         }
     }

@@ -124,7 +124,8 @@ public class CookingIngridient : MonoBehaviour, IPointerDownHandler, IPointerUpH
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        if (eventData.pointerCurrentRaycast.gameObject.name == "Kettle")
+        if (eventData.pointerCurrentRaycast.gameObject.name == "Kettle" || eventData.pointerCurrentRaycast.gameObject.name == "Potion"
+            || eventData.pointerCurrentRaycast.gameObject.name == "Wood" || eventData.pointerCurrentRaycast.gameObject.name == "Fire")
         {
             UseIngridient();
         }

@@ -53,6 +53,10 @@ public class ResearchTools : MonoBehaviour {
                 else if (tool == "Distiller")
                     OpenHelpDistiller(buff, k);
             }
+            else
+            {
+                Messager.AddMess("Sprite/GameFiled/GameProcces/Cancel-Button-PNG-Photo", "Неудача", "");
+            }
         }
         else if (tool == "Blender")
         {
@@ -65,6 +69,7 @@ public class ResearchTools : MonoBehaviour {
                     if ((recept.IdFirstIngredient == currentIngridient.Id || recept.IdFirstIngredient == currentIngridientSecond.Id)
                         && (recept.IdSecondInredient == currentIngridient.Id || recept.IdSecondInredient == currentIngridient.Id))
                     {
+                        Messager.AddMess(ListIngredients.masIngredient[recept.IdResultIngredient].Sprite, "Открыт ингридиент", "");
                         ListIngredients.masIngredient[recept.IdResultIngredient].Opened = true;
                         ListAchivments.ingridientOpenCount++;
                         ListAchivments.ChekAchiv();
@@ -128,10 +133,16 @@ public class ResearchTools : MonoBehaviour {
                 }
             }
             if (flag && mass[index] != null)
+            {
                 ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[index].Id, currentIngridient.Id, true, true, false));
+                Messager.AddMess("Sprite/GameFiled/Sprites/5759b69c2046c155367151e4", "Открыта подсказка", "");
+            }
         }
         else if (mass[0] != null)
+        {
             ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[0].Id, currentIngridient.Id, true, true, false));
+            Messager.AddMess("Sprite/GameFiled/Sprites/5759b69c2046c155367151e4", "Открыта подсказка", "");
+        }
     }
 
     void OpenHelpMoratr(RecipeIngredint[] mass, int k)
@@ -169,10 +180,16 @@ public class ResearchTools : MonoBehaviour {
                 }
             }
             if (flag && mass[index] != null)
+            {
                 ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[index].Id, currentIngridient.Id, false, true, true));
+                Messager.AddMess("Sprite/GameFiled/Sprites/5759b69c2046c155367151e4", "Открыта подсказка", "");
+            }
         }
         else if (mass[0] != null)
+        {
             ReceptIngridientPanel.listHRI.Add(new HelpReceptIngridient(mass[0].Id, currentIngridient.Id, false, true, true));
+            Messager.AddMess("Sprite/GameFiled/Sprites/5759b69c2046c155367151e4", "Открыта подсказка", "");
+        }
     }
 
     public void CancelResearch()
