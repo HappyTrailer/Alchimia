@@ -62,6 +62,7 @@
      <Compile Include="Assets\Skripts\ListPotion.cs" />
      <Compile Include="Assets\Skripts\ListRecipeIngredint.cs" />
      <Compile Include="Assets\Skripts\ListRecipePotion.cs" />
+     <Compile Include="Assets\Skripts\Messager.cs" />
      <Compile Include="Assets\Skripts\Money.cs" />
      <Compile Include="Assets\Skripts\Potion.cs" />
      <Compile Include="Assets\Skripts\ReceptIngridientPanel.cs" />
