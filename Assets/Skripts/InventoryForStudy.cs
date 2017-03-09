@@ -35,7 +35,7 @@ public class InventoryForStudy : MonoBehaviour
                 int temp = ingr.Id;
                 item = Instantiate(container);
                 item.name = ingr.Id.ToString();
-                item.transform.parent = itemPanel.transform;
+                item.transform.SetParent(itemPanel.transform);
                 item.transform.localScale = new Vector3(1, 1, 1);
                 item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[ingr.Id].Sprite);
                 item.transform.GetChild(1).GetComponent<Text>().text = "R" + ListIngredients.masIngredient[ingr.Id].Red.ToString();

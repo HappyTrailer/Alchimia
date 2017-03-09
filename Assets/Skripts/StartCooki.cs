@@ -56,7 +56,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
         foreach (int id in ListRecipePotion.masRecPotion[receptId].Mass)
         {
             itemHelp = Instantiate(containerHelp);
-            itemHelp.transform.parent = itemPanelHelp.transform;
+            itemHelp.transform.SetParent(itemPanelHelp.transform);
             itemHelp.name = ListIngredients.masIngredient[id].Name;
             itemHelp.transform.localScale = new Vector3(1, 1, 1);
             itemHelp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);

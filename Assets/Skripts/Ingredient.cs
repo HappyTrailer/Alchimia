@@ -20,8 +20,6 @@ public class Ingredient {
     string nameIngr;   //Название
     string spritePath; //Путь к спрайту
 
-    float time; // время на обработку RGB
-
     bool opened; // Флаг открытости закрытости
 
     //Параметризированый конструктор
@@ -32,7 +30,6 @@ public class Ingredient {
         float percent,
         string nameIngr,
         string spritePath,
-        float time,
         bool opened)
     {
         this.id = id;
@@ -44,7 +41,6 @@ public class Ingredient {
         this.percent = percent;
         this.nameIngr = nameIngr;
         this.spritePath = spritePath;
-        this.time = time;
         this.opened = opened;
     }
 

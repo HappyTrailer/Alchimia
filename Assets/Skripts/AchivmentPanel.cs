@@ -23,7 +23,7 @@ public class AchivmentPanel : MonoBehaviour
             Achivment ach = ListAchivments.masAchivments[i];
             item = Instantiate(container);
             item.name = ach.Name;
-            item.transform.parent = itemPanel.transform;
+            item.transform.SetParent(itemPanel.transform);
             item.transform.localScale = new Vector3(1, 1, 1);
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ach.Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ach.Name;

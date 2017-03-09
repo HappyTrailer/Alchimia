@@ -13,7 +13,7 @@ public class ReceptIngridientPanel : MonoBehaviour
 
     void Start()
     {
-        List<HelpReceptIngridient> listHRI = new List<HelpReceptIngridient>();
+        listHRI = new List<HelpReceptIngridient>();
     }
 
     public void FillRecepts()
@@ -31,7 +31,7 @@ public class ReceptIngridientPanel : MonoBehaviour
             {
                 item = Instantiate(container);
                 item.transform.name = "Item";
-                item.transform.parent = itemsPanel.transform;
+                item.transform.SetParent(itemsPanel.transform);
                 item.transform.localScale = new Vector3(1, 1, 1);
                 item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[listHRI[i].Ingr].Sprite);
                 item.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ListIngredients.masIngredient[listHRI[i].Ingr].Red.ToString();
@@ -65,7 +65,7 @@ public class ReceptIngridientPanel : MonoBehaviour
                         buff = ListRecipeIngredint.masRecIngr[k];
                         item = Instantiate(container);
                         item.transform.name = "Item";
-                        item.transform.parent = itemsPanel.transform;
+                        item.transform.SetParent(itemsPanel.transform);
                         item.transform.localScale = new Vector3(1, 1, 1);
                         item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[buff.IdFirstIngredient].Sprite);
                         item.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = ListIngredients.masIngredient[buff.IdFirstIngredient].Red.ToString();

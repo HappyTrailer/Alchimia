@@ -35,7 +35,7 @@ public class TradeStudy : MonoBehaviour
             int temp = i;
             item = Instantiate(container);
             item.transform.name = "Item";
-            item.transform.parent = itemsPanel.transform;
+            item.transform.SetParent(itemsPanel.transform);
             item.transform.localScale = new Vector3(1, 1, 1);
             //item.transform.GetChild(0).GetComponent<Image>().sprite = 
             //item.transform.GetChild(1).GetComponent<Text>().text = 

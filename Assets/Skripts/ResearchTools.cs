@@ -11,8 +11,6 @@ public class ResearchTools : MonoBehaviour {
     // реализовать покупку ступки нового грейда
     // по завершении процесса исследавния выдать результат в виде всплывающего сообщения на игровом екране
     
-    int mortar1 = 1;
-    int distiller = 1;
     public static int maxCountIngridientInMortar = 10;
     public static ItemsInInventary currentIngridient;
     public static ItemsInInventary currentIngridientSecond;
