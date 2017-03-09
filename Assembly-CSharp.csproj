@@ -74,7 +74,6 @@
     <Compile Include="Assets\Skripts\TradeIngridients.cs" />
     <Compile Include="Assets\Skripts\TradeStudy.cs" />
     <Compile Include="Assets\Skripts\TradeTools.cs" />
-    <Compile Include="Assets\Skripts\Trader.cs" />
     <Compile Include="Assets\Tasks.cs" />
     <Reference Include="UnityEngine.UI">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
@@ -100,6 +99,9 @@
     <Reference Include="UnityEditor.iOS.Extensions.Common">
       <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

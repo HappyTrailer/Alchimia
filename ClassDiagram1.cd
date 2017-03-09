@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Achivment" Collapsed="true">
+    <Position X="0.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABQAAAAQAAAAAAABAAAAAQAABAFAAAQAQAAAAAAEAA=</HashCode>
+      <FileName>Assets\Skripts\Achivment.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AchivmentPanel" Collapsed="true">
+    <Position X="4" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAIAAAAAAAAAAAAAQCAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Skripts\AchivmentPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ClickOnRecept" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>hAAQIQAAAgAAAAAAAAQAAAAAABAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>Assets\Skripts\ClickOnRecept.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CookingIngridient" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAeAAAAAACAIAAAiAAAAIUAAAAAAAAAAAAwAEAAAAAI=</HashCode>
+      <FileName>Assets\Skripts\CookingIngridient.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CookyTool" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAAAAAACAIBgAAAAhBCEEIAAAAAQAIAAAACAEAQQI=</HashCode>
+      <FileName>Assets\Skripts\CookyTool.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="HelpReceptIngridient" Collapsed="true">
+    <Position X="0.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gQAAAAQAAAAAAAAAAAAAAAAAAAAgACAEAAgACAEAAQA=</HashCode>
+      <FileName>Assets\Skripts\HelpReceptIngridient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Ingredient" Collapsed="true">
+    <Position X="0.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAAQCAAgAAEAAAAAQAEAAAABAYAQAACBEAAwA=</HashCode>
+      <FileName>Assets\Skripts\Ingredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Interface" Collapsed="true">
+    <Position X="0.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oKyGDEEhASQgAAAAAIGYEyAIABQgDYFTgABCgEBExCI=</HashCode>
+      <FileName>Assets\Skripts\Interface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Inventory" Collapsed="true">
+    <Position X="2.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgQAAAAgACABAAQAEAAAAAAAAAAAAAAAAAAAgQAABAA=</HashCode>
+      <FileName>Assets\Skripts\Inventory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InventoryForStudy" Collapsed="true">
+    <Position X="4" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>BAQAIAAgAAAAAAAAAAQAIAICAAAAgAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Assets\Skripts\InventoryForStudy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ItemsInInventary" Collapsed="true">
+    <Position X="0.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAACAIAAAAAAAAAABAAAAAQAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Skripts\ItemsInInventary.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListAchivments" Collapsed="true">
+    <Position X="2.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAiAACAEAAAACAAAAAAAgAAAQAAAACAAAAAAAAA=</HashCode>
+      <FileName>Assets\Skripts\ListAchivments.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListIngredients" Collapsed="true">
+    <Position X="4" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAABAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>Assets\Skripts\ListIngredients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListRecipeIngredint" Collapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Skripts\ListRecipeIngredint.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ListRecipePotion" Collapsed="true">
+    <Position X="2.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAACAAAAAAASQAAQAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Skripts\ListRecipePotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Messager" Collapsed="true">
+    <Position X="2.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAACIAQAAAAAAAACAAAAAAAAAAAAAAAQAACAA=</HashCode>
+      <FileName>Assets\Skripts\Messager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Message" Collapsed="true">
+    <Position X="0.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAgAAAAIARAAAAAQAAAAAAAAAQA=</HashCode>
+      <FileName>Assets\Skripts\Messager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Money" Collapsed="true">
+    <Position X="2.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Assets\Skripts\Money.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ReceptIngridientPanel" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAEAAAAAACEAAAAAAQQAAAQAAAAAAAAAAQAAAQAAAAA=</HashCode>
+      <FileName>Assets\Skripts\ReceptIngridientPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RecipeIngredint" Collapsed="true">
+    <Position X="2.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAQAAAAEAIAAAAAAAAAAAAAAIAAAAQAAAAgA=</HashCode>
+      <FileName>Assets\Skripts\RecipeIngredient.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="RecipePotion" Collapsed="true">
+    <Position X="0.5" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAADAAAAASAAAAAAAAAAAAAAABAAAAAQJQAAAAGAAgA=</HashCode>
+      <FileName>Assets\Skripts\RecipePotion.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ResearchTools" Collapsed="true">
+    <Position X="2.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAQACAAgAAAAAAAAAAAEAAAAAAQAAAQAAAADAA=</HashCode>
+      <FileName>Assets\Skripts\ResearchTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SphereScale" Collapsed="true">
+    <Position X="9.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAQAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Assets\Skripts\SphereScale.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StartCooki" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.5" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>kAAAAEQAAiAgAAAAAIAAAAAAAAAAAAAAAAAFAEAAAIg=</HashCode>
+      <FileName>Assets\Skripts\StartCooki.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Timer" Collapsed="true">
+    <Position X="9.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAACAAACAAKAAABIAAAAABACAQgAAgAAAEAEBAEAA=</HashCode>
+      <FileName>Assets\Skripts\Timer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TradeIngridients" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAAAACAAAACAAAQAAAAAAAAAAAAAAAgAAQAAEAA=</HashCode>
+      <FileName>Assets\Skripts\TradeIngridients.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TradeStudy" Collapsed="true">
+    <Position X="7.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAQAAAIAACAAAAAAAAQAAAAAAAAAAAAAAAgAAQAAEAA=</HashCode>
+      <FileName>Assets\Skripts\TradeStudy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TradeTools" Collapsed="true">
+    <Position X="7.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>RAQAAAAAACAAAAAAAAQAAAAAAAAAAAAAAAgAAQAAEAA=</HashCode>
+      <FileName>Assets\Skripts\TradeTools.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
