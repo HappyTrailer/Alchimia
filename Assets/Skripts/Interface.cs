@@ -139,13 +139,13 @@ public class Interface : MonoBehaviour {
         {
             animAch.SetTrigger("Open");
             animAch.SetBool("Opened", true);
+            achPanel.GetComponent<AchivmentPanel>().ShowAchivments();
         }
         if (animSett.GetBool("Opened"))
         {
             animSett.SetTrigger("Close");
             animSett.SetBool("Opened", false);
         }
-        achPanel.GetComponent<AchivmentPanel>().ShowAchivments();
     }
 
     public void ShowSettings()

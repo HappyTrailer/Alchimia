@@ -10,21 +10,26 @@ public class AchivmentPanel : MonoBehaviour
 
     GameObject item;
 
+    void Start()
+    {
+        ListAchivments.AchivmentsMasStart();
+        container.SetActive(true);
+        for (int i = 0; i < ListAchivments.masAchivments.Length; i++)
+        {
+            item = Instantiate(container);
+            item.transform.SetParent(itemPanel.transform);
+            item.transform.localScale = new Vector3(1, 1, 1);
+        }
+        container.SetActive(false);
+    }
+
     public void ShowAchivments()
     {
-        container.SetActive(true);
-        for (int i = 0; i < itemPanel.transform.childCount; i++)
-        {
-            if (itemPanel.transform.GetChild(i).name != "Container")
-                Destroy(itemPanel.transform.GetChild(i).gameObject);
-        }
         for (int i = 0; i < ListAchivments.masAchivments.Length; i++)
         {
             Achivment ach = ListAchivments.masAchivments[i];
-            item = Instantiate(container);
+            item = itemPanel.transform.GetChild(i + 1).gameObject;
             item.name = ach.Name;
-            item.transform.SetParent(itemPanel.transform);
-            item.transform.localScale = new Vector3(1, 1, 1);
             item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ach.Sprite);
             item.transform.GetChild(1).GetComponent<Text>().text = ach.Name;
             float count = 0;
@@ -56,8 +61,6 @@ public class AchivmentPanel : MonoBehaviour
             }
             item.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = count + " из " + ach.Count;
             item.transform.GetChild(2).GetComponent<Image>().fillAmount = ((count * 100) / ach.Count) / 100;
-
         }
-        container.SetActive(false);
     }
 }

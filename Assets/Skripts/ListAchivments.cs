@@ -13,11 +13,6 @@ public class ListAchivments : MonoBehaviour {
     public static float ingridientUseCount;
     public static float ingridientBuyCount;
 
-    void Start()
-    {
-        AchivmentsMasStart();
-    }
-
     public static void ChekAchiv()
     {
         float count = 0;
@@ -54,7 +49,7 @@ public class ListAchivments : MonoBehaviour {
         }
     }
 
-    void AchivmentsMasStart()
+    public static void AchivmentsMasStart()
     {
         masAchivments = new Achivment[]
         {
