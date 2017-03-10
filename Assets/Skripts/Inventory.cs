@@ -43,7 +43,7 @@ public class Inventory : MonoBehaviour {
         {
             if (i < listItem.Count)
             {
-                int temp = listItem[nextItem + i].Id;
+                int temp = listItem[nextItem + i].Id;//===================BUG
                 itemsPanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[listItem[nextItem + i].Id].Sprite);
                 itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = listItem[nextItem + i].Count.ToString();
                 itemsPanel.transform.GetChild(i).GetComponent<Button>().enabled = true;

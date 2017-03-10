@@ -73,7 +73,6 @@
      <Compile Include="Assets\Skripts\TradeIngridients.cs" />
      <Compile Include="Assets\Skripts\TradeStudy.cs" />
      <Compile Include="Assets\Skripts\TradeTools.cs" />
-     <Compile Include="Assets\Tasks.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
