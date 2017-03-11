@@ -22,6 +22,11 @@ public class Inventory : MonoBehaviour {
 
     void Update()
     {
+        ChekEmpty();
+    }
+
+    void ChekEmpty()
+    {
         for (int i = 0; i < Inventory.listItem.Count; i++)
         {
             if (listItem[i].Count <= 0)
@@ -41,9 +46,9 @@ public class Inventory : MonoBehaviour {
         }
         for (int i = 0; i < 9; i++)
         {
-            if (i < listItem.Count)
+            if (nextItem + i < listItem.Count)
             {
-                int temp = listItem[nextItem + i].Id;//===================BUG
+                int temp = listItem[nextItem + i].Id;
                 itemsPanel.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[listItem[nextItem + i].Id].Sprite);
                 itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = listItem[nextItem + i].Count.ToString();
                 itemsPanel.transform.GetChild(i).GetComponent<Button>().enabled = true;
@@ -63,9 +68,12 @@ public class Inventory : MonoBehaviour {
             {
                 listItem[i].Count--;
                 if (listItem[i].Count > 1)
-                    itemsPanel.transform.GetChild(i).GetChild(1).GetComponent<Text>().text = listItem[i].Count.ToString();
+                    itemsPanel.transform.GetChild(i - nextItem).GetChild(1).GetComponent<Text>().text = listItem[i].Count.ToString();
                 else
+                {
+                    ChekEmpty();
                     FillInventory();
+                }
                 break;
             }
         }

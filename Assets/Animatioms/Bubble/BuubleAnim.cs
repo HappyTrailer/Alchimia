@@ -49,7 +49,6 @@ public class BuubleAnim : MonoBehaviour {
         }
         for (int i = 0; i < bubbles.Count; i++)
         {
-
             bubbles[i].transform.position = Vector3.Lerp(bubbles[i].transform.position, new Vector3(bubbles[i].transform.position.x, bubbles[i].transform.position.y + 10), Time.deltaTime);
             Color32 c = bubbles[i].GetComponent<Image>().color;
             if (c.a <= 1)
