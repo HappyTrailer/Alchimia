@@ -45,6 +45,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
     {
         Interface.globalMenuItems.SetActive(false);
         Interface.globalCancelCooki.SetActive(true);
+        Interface.globalPotion.SetActive(true);
         itemPanelHelp.transform.parent.parent.gameObject.SetActive(true);
         globalReceptId = receptId;
         containerHelp.SetActive(true);
@@ -104,6 +105,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
         globalItemPanelHelp.SetActive(false);
         Interface.globalCancelCooki.SetActive(false);
         Interface.globalMenuItems.SetActive(true);
+        Interface.globalPotion.SetActive(false);
         for (int i = 0; i < ingridients.transform.childCount; i++)
         {
             ingridients.transform.GetChild(i).GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprite/GameFiled/UIMask");
