@@ -365,7 +365,11 @@ public class Interface : MonoBehaviour {
         if (!animInventaryForStudy.GetBool("Opened"))
             animInventaryForStudy.SetTrigger("StudyOpen");
         else
+        {
+            if (animScrollerIngridientCount.GetBool("Opened"))
+                ShowScrollerIngridientCount(1);
             animInventaryForStudy.SetTrigger("StudyClose");
+        }
         animInventaryForStudy.SetBool("Opened", !animInventaryForStudy.GetBool("Opened"));
         inventaryForStudy.GetComponent<InventoryForStudy>().ShowIngridient(1);
     }
