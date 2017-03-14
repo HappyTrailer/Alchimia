@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Timer : MonoBehaviour {
 
     public static float timer;
+    public static float averageValue;
     public static float gradeValuePotion;
     public static bool flag;
     public static GameObject obj;
@@ -18,6 +19,7 @@ public class Timer : MonoBehaviour {
 
     void Start()
     {
+        averageValue = 0;
         globalSlider = slider;
         obj = gameObject;
         gameObject.SetActive(false);
@@ -25,6 +27,7 @@ public class Timer : MonoBehaviour {
 	
 	void Update () 
     {
+        slider.value = gradeValuePotion;
         if (flag)
         {
             if (timer >= 0)
@@ -46,16 +49,6 @@ public class Timer : MonoBehaviour {
 
     void ChangeGradeValuePotion(bool managed)
     {
-        float buff = 1.0f / (float)ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Mass.Length;
-        if (managed)
-        {
-            gradeValuePotion += buff / 2 * countWrongIngridients;
-            countIngridientsForOneStep -= countWrongIngridients;
-            gradeValuePotion += buff * countIngridientsForOneStep;
-        }
-        else
-            gradeValuePotion -= buff * countIngridientsForOneStep;
-        slider.value = gradeValuePotion;
         if(StartCooki.LastIngridients())
         {
             Money.money += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade();

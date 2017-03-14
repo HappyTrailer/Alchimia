@@ -54,6 +54,7 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             if (itemPanelHelp.transform.GetChild(i).name != "Container")
                 Destroy(itemPanelHelp.transform.GetChild(i).gameObject);
         }
+        int count = 0;
         foreach (int id in ListRecipePotion.masRecPotion[receptId].Mass)
         {
             itemHelp = Instantiate(containerHelp);
@@ -62,7 +63,9 @@ public class StartCooki : MonoBehaviour, IPointerClickHandler
             itemHelp.transform.localScale = new Vector3(1, 1, 1);
             itemHelp.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(ListIngredients.masIngredient[id].Sprite);
             itemHelp.transform.GetChild(1).GetComponent<Text>().text = ListIngredients.masIngredient[id].Name;
+            count += ListIngredients.masIngredient[id].Red + ListIngredients.masIngredient[id].Green + ListIngredients.masIngredient[id].Blue;
         }
+        Timer.averageValue = 1.0f / count;
         containerHelp.SetActive(false);
         IngridientsToCooki();
     }

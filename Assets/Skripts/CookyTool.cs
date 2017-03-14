@@ -134,11 +134,21 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
                 if (obj.transform.localScale.y < 1.5F)
                     obj.transform.localScale += new Vector3(0, 0.01F);
             }
+            if (R2 > 0)
+                Timer.gradeValuePotion += ((x + y) / speedR) * Timer.averageValue;
         }
         else if (this.name == "G")
+        {
             G2 -= (x + y) / speedG;
+            if (G2 > 0)
+                Timer.gradeValuePotion += ((x + y) / speedG) * Timer.averageValue;
+        }
         else if (this.name == "B")
+        {
             B2 -= (x + y) / speedB;
+            if (B2 > 0)
+                Timer.gradeValuePotion += ((x + y) / speedB) * Timer.averageValue;
+        }
 
         if (R2 < 0)
             R2 = 0;
