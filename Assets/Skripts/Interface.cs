@@ -63,6 +63,13 @@ public class Interface : MonoBehaviour {
 
     void Update()
     {
+        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Fire"))
+        {
+            if (obj.transform.localScale.x > 1)
+                obj.transform.localScale -= new Vector3(0.005F, 0);
+            if (obj.transform.localScale.y > 1)
+                obj.transform.localScale -= new Vector3(0, 0.005F);
+        }
         if (animMenu.GetCurrentAnimatorStateInfo(0).IsName("ReceptOpen") && animMenu.GetBool("Recept") && !receptOnePotion.activeSelf)
         {
             if (animMenu.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)

@@ -69,6 +69,7 @@ public class ResearchTools : MonoBehaviour {
                     {
                         Messager.AddMess(ListIngredients.masIngredient[recept.IdResultIngredient].Sprite, "Открыт ингридиент", "");
                         ListIngredients.masIngredient[recept.IdResultIngredient].Opened = true;
+                        ListIngredients.grade = ListIngredients.masIngredient[recept.IdResultIngredient].Grade;
                         ListAchivments.ingridientOpenCount++;
                         ListAchivments.ChekAchiv();
                         for (int i = 0; i < ReceptIngridientPanel.listHRI.Count; i++)

@@ -33,9 +33,9 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
     void Update()
     {
         circle.GetComponent<Image>().color = new Color32(System.Convert.ToByte(R), System.Convert.ToByte(G), System.Convert.ToByte(B), 255);
-        if(this.name == "R")
+        if (this.name == "R")
             text.text = R2.ToString("F0");
-        else if(this.name == "G")
+        else if (this.name == "G")
             text.text = G2.ToString("F0");
         else if (this.name == "B")
             text.text = B2.ToString("F0");
@@ -125,7 +125,16 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
     public void ChangeColor(float x, float y)
     {
         if (this.name == "R")
+        {
             R2 -= (x + y) / speedR;
+            foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Fire"))
+            {
+                if (obj.transform.localScale.x < 1.5F)
+                    obj.transform.localScale += new Vector3(0.01F, 0);
+                if (obj.transform.localScale.y < 1.5F)
+                    obj.transform.localScale += new Vector3(0, 0.01F);
+            }
+        }
         else if (this.name == "G")
             G2 -= (x + y) / speedG;
         else if (this.name == "B")

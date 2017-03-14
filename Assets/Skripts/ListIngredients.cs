@@ -9,11 +9,13 @@ public class ListIngredients : MonoBehaviour {
     //добавить его в метод IngredientMasStart
 
     public static Ingredient[] masIngredient; //масив всех ингредиентов
+    public static int grade;
 
     //в методе Start происходит инициализация масива
     //скрипт должен загружатся  при старте игры
     void Start () {
         IngredientMasStart();
+        grade = 1;
     }
 
     //Инициализация масива
