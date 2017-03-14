@@ -19,7 +19,6 @@ public class Timer : MonoBehaviour {
 
     void Start()
     {
-        averageValue = 0;
         globalSlider = slider;
         obj = gameObject;
         gameObject.SetActive(false);
@@ -116,13 +115,13 @@ public class Timer : MonoBehaviour {
 
     public static void SliderActivate()
     {
-        gradeValuePotion = 0.01f;
+        gradeValuePotion = 0;
         globalSlider.value = gradeValuePotion;
     }
 
     public static void SliderDeActivate()
     {
-        gradeValuePotion = 0.01f;
+        gradeValuePotion = 0;
         globalSlider.value = gradeValuePotion;
     }
 }
