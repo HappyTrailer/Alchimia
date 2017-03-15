@@ -22,14 +22,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 200
-        outSlope: 200
+        inSlope: 300
+        outSlope: 300
         tangentMode: 34
       - serializedVersion: 2
         time: 0.5
-        value: 100
-        inSlope: 200
-        outSlope: 200
+        value: 150
+        inSlope: 300
+        outSlope: 300
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -66,14 +66,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 90
-        inSlope: 420
-        outSlope: 420
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       - serializedVersion: 2
         time: 0.5
-        value: 300
-        inSlope: 420
-        outSlope: 420
+        value: 200
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -88,14 +88,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 90
-        inSlope: 438
-        outSlope: 438
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       - serializedVersion: 2
         time: 0.5
-        value: 309
-        inSlope: 438
-        outSlope: 438
+        value: 200
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -208,14 +208,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 0
-        inSlope: 200
-        outSlope: 200
+        inSlope: 300
+        outSlope: 300
         tangentMode: 34
       - serializedVersion: 2
         time: 0.5
-        value: 100
-        inSlope: 200
-        outSlope: 200
+        value: 150
+        inSlope: 300
+        outSlope: 300
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -252,14 +252,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 90
-        inSlope: 420
-        outSlope: 420
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       - serializedVersion: 2
         time: 0.5
-        value: 300
-        inSlope: 420
-        outSlope: 420
+        value: 200
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -274,14 +274,14 @@ AnimationClip:
       - serializedVersion: 2
         time: 0
         value: 90
-        inSlope: 438
-        outSlope: 438
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       - serializedVersion: 2
         time: 0.5
-        value: 309
-        inSlope: 438
-        outSlope: 438
+        value: 200
+        inSlope: 220
+        outSlope: 220
         tangentMode: 34
       m_PreInfinity: 2
       m_PostInfinity: 2
