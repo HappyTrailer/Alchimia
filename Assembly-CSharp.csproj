@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Animatioms\Bubble\BuubleAnim.cs" />
+     <Compile Include="Assets\Presintatoin.cs" />
      <Compile Include="Assets\Skripts\Achivment.cs" />
      <Compile Include="Assets\Skripts\AchivmentPanel.cs" />
      <Compile Include="Assets\Skripts\ClickOnRecept.cs" />
