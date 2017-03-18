@@ -21,9 +21,13 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
     public float speedB;
 
     Vector3 startPos;
+    Vector3 startLojkaPos;
+    Quaternion startLojkaRot;
 
 	void Start () {
         startPos = transform.position;
+        startLojkaPos = Interface.globalLojka.transform.position;
+        startLojkaRot = Interface.globalLojka.transform.rotation;
         Reset();
         speedR = 100;
         speedG = 100;
@@ -82,12 +86,20 @@ public class CookyTool : MonoBehaviour, IDragHandler, /*IDropHandler,*/ IPointer
         if (Timer.flag)
         {
             transform.position = eventData.position;
+            if (this.name == "G")
+                Interface.globalLojka.GetComponent<Animator>().enabled = true;
         }
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
         transform.position = startPos;
+        if (this.name == "G")
+        {
+            Interface.globalLojka.GetComponent<Animator>().enabled = false;
+            Interface.globalLojka.transform.rotation = startLojkaRot;
+            Interface.globalLojka.transform.position = startLojkaPos;
+        }
     }
 
     public static void Reset()

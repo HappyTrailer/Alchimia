@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Interface : MonoBehaviour {
 
+    public GameObject lojka;
     public GameObject potion;
     public GameObject receptPotion;
     public GameObject receptOnePotion;
@@ -26,6 +27,7 @@ public class Interface : MonoBehaviour {
     public static GameObject globalCancelCooki;
     public static GameObject globalMenuItems;
     public static GameObject globalPotion;
+    public static GameObject globalLojka;
 
     Animator animScrollerIngridientCount;
     Animator animInventaryForStudy;
@@ -43,6 +45,7 @@ public class Interface : MonoBehaviour {
 
     void Start()
     {
+        globalLojka = lojka;
         globalPotion = potion;
         globalCancelCooki = cancelCooki;
         globalMenuItems = menuItems;
