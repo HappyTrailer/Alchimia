@@ -48,6 +48,7 @@ public class Timer : MonoBehaviour {
 
     void ChangeGradeValuePotion(bool managed)
     {
+
         if(StartCooki.LastIngridients())
         {
             Money.money += ListRecipePotion.masRecPotion[StartCooki.globalReceptId].Price * GetGrade();
