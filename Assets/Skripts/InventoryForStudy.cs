@@ -9,6 +9,7 @@ public class InventoryForStudy : MonoBehaviour
     public GameObject itemPanel;
     public GameObject container;
 
+    int currId;
     GameObject item;
     GameObject canvas;
     int currentGrade;
@@ -16,7 +17,9 @@ public class InventoryForStudy : MonoBehaviour
     void Update()
     {
         canvas = GameObject.Find("Canvas");
-        scrollerIngridientCount.transform.GetChild(5).GetComponent<Text>().text = scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value.ToString();
+        scrollerIngridientCount.transform.GetChild(5).GetComponent<Text>().text = "Количество: " + scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value.ToString();
+        if (ResearchTools.tool != "Blender")
+            scrollerIngridientCount.transform.GetChild(5).GetComponent<Text>().text += "\n Шанс на успех: " + ListIngredients.masIngredient[currId].Percent * 100 * scrollerIngridientCount.transform.GetChild(2).GetComponent<Slider>().value + "%";
     }
 
     public void ShowIngridient(int grade)
@@ -50,6 +53,7 @@ public class InventoryForStudy : MonoBehaviour
 
     public void ShowScrollerIngridientCount(int id)
     {
+        currId = id;
         scrollerIngridientCount.transform.GetChild(3).GetComponent<Button>().onClick.RemoveAllListeners();
         foreach(ItemsInInventary item in Inventory.listItem)
         {
