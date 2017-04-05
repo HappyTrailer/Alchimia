@@ -4,8 +4,6 @@ using System.Collections;
 
 public class Interface : MonoBehaviour 
 {
-    public GameObject block;
-
     public GameObject lojka;
     public GameObject potion;
     public GameObject receptPotion;
@@ -47,8 +45,6 @@ public class Interface : MonoBehaviour
 
     void Start()
     {
-        if (System.DateTime.Today > new System.DateTime(2017, 03, 31))
-            block.SetActive(true);
         globalLojka = lojka;
         globalPotion = potion;
         globalCancelCooki = cancelCooki;
