@@ -6,28 +6,22 @@ using UnityEngine;
 //Класс опичывает задание
 public class Quest : MonoBehaviour {
 
-    string name; //название
+    public string nameQuest; //название
 
-    int money;   //награда
-    int timeLimit; //ограничение по времени
-    //int countRepeat; //количество повторений
-   // int currentRepeat; // текущее повторение
+    public int money;   //награда
+    public bool timeLimit; //ограничение по времени
 
-    int[,] masPotion; //масив для записи - id зелья | количество повторов | выполнено повторов
+    public int[,] masPotion; //масив для записи - id зелья | количество повторов | выполнено повторов
     
     public Quest(string name,
                 int money, 
-                int timeLimit, 
-                //int countRepeat,
-                //int currentRepeat,
+                bool timeLimit, 
                 int[,] masPotion)
     {
-        this.name = name;
+        this.nameQuest = name;
 
         this.money = money;
         this.timeLimit = timeLimit;
-        //this.countRepeat = countRepeat;
-        //this.currentRepeat = currentRepeat;
 
         this.masPotion = masPotion;
     }
