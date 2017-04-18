@@ -2,7 +2,8 @@
 using UnityEngine.UI;
 using System.Collections;
 
-public class ListRecipePotion : MonoBehaviour {
+public class ListRecipePotion : MonoBehaviour 
+{
     //Класс содержит массив всех рецептов
 
     public GameObject receptPanel;
@@ -10,7 +11,8 @@ public class ListRecipePotion : MonoBehaviour {
     GameObject item;
     public static RecipePotion[] masRecPotion;
 	// Use this for initialization
-	void Start () {
+	void Start () 
+    {
         InitMasRecPotion();
         FillRecepts(1);
     }
@@ -37,7 +39,7 @@ public class ListRecipePotion : MonoBehaviour {
             if (receptPanel.transform.GetChild(i).name != "Container")
                 Destroy(receptPanel.transform.GetChild(i).gameObject);
         }
-
+        int k = 0;
         foreach (RecipePotion i in masRecPotion)
         {
             if (grade == i.Grade)
@@ -47,9 +49,12 @@ public class ListRecipePotion : MonoBehaviour {
                 item.transform.localScale = new Vector3(1, 1, 1);
                 item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(i.Sprite);
                 item.transform.GetChild(1).GetComponent<Text>().text = i.NameRec;
-                item.transform.GetChild(2).GetComponent<Text>().text = "Цена: " + i.Price;
+                item.transform.GetChild(2).GetComponent<Text>().text = i.Price.ToString();
                 item.transform.name = i.Id.ToString();
+                k++;
             }
+            if (k == 6)
+                break;
         }
         container.SetActive(false);
     }
