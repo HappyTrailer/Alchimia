@@ -112,7 +112,10 @@ public class Interface : MonoBehaviour
             animMenu.SetTrigger("ReceptClose");
         }
         else
+        {
             animMenu.SetTrigger("ReceptOpen");
+            GetComponent<ListRecipePotion>().FillRecepts(1, 1);
+        }
 
         animMenu.transform.FindChild("Recept").GetComponentInChildren<Button>().enabled = animMenu.GetBool("Recept");
         animMenu.SetBool("Recept", !animMenu.GetBool("Recept"));
@@ -123,7 +126,7 @@ public class Interface : MonoBehaviour
         twoAnimMenu.SetTrigger("TwoMenuOpen");
         animInv.SetTrigger("Open");
         animInv.SetBool("Opened", true);
-        invPanel.GetComponent<Inventory>().FillInventory();
+        invPanel.GetComponent<Inventory>().FillInventory(1);
     }
 
     public void ShowInventory()
@@ -143,7 +146,7 @@ public class Interface : MonoBehaviour
             animSett.SetTrigger("Close");
             animSett.SetBool("Opened", false);
         }
-        invPanel.GetComponent<Inventory>().FillInventory();
+        invPanel.GetComponent<Inventory>().FillInventory(1);
     }
 
     public void ShowAchivements()
@@ -360,9 +363,19 @@ public class Interface : MonoBehaviour
         invPanel.GetComponent<Inventory>().PrevPage();
     }
 
+    public void NextPageRecept()
+    {
+        GetComponent<ListRecipePotion>().NextPage();
+    }
+
+    public void PrevPageRecept()
+    {
+        GetComponent<ListRecipePotion>().PrevPage();
+    }
+
     public void ShowRecepteByGrade(int grade)
     {
-        this.GetComponent<ListRecipePotion>().FillRecepts(grade);
+        this.GetComponent<ListRecipePotion>().FillRecepts(grade, 1);
     }
 
     public void ShowIngridientsByGrade(int grade)

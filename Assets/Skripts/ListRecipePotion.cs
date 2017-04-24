@@ -10,11 +10,12 @@ public class ListRecipePotion : MonoBehaviour
     public GameObject container;
     GameObject item;
     public static RecipePotion[] masRecPotion;
+    int currGrade;
+    int page;
 	// Use this for initialization
 	void Start () 
     {
         InitMasRecPotion();
-        FillRecepts(1);
     }
     //Инициализация массива рецептов
     void InitMasRecPotion()
@@ -31,8 +32,11 @@ public class ListRecipePotion : MonoBehaviour
         };
     }
 
-    public void FillRecepts(int grade)
+    public void FillRecepts(int grade, int p)
     {
+        page = p;
+        currGrade = grade;
+        int firstItem = (page * 6) - 6;
         container.SetActive(true);
         for (int i = 0; i < receptPanel.transform.childCount; i++)
         {
@@ -40,22 +44,49 @@ public class ListRecipePotion : MonoBehaviour
                 Destroy(receptPanel.transform.GetChild(i).gameObject);
         }
         int k = 0;
+        int j = 0;
         foreach (RecipePotion i in masRecPotion)
         {
-            if (grade == i.Grade)
+            if (currGrade == i.Grade)
             {
-                item = Instantiate(container);
-                item.transform.SetParent(receptPanel.transform);
-                item.transform.localScale = new Vector3(1, 1, 1);
-                item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(i.Sprite);
-                item.transform.GetChild(1).GetComponent<Text>().text = i.NameRec;
-                item.transform.GetChild(2).GetComponent<Text>().text = i.Price.ToString();
-                item.transform.name = i.Id.ToString();
-                k++;
+                if (j >= firstItem)
+                {
+                    item = Instantiate(container);
+                    item.transform.SetParent(receptPanel.transform);
+                    item.transform.localScale = new Vector3(1, 1, 1);
+                    item.transform.GetChild(0).GetComponent<Image>().sprite = Resources.Load<Sprite>(i.Sprite);
+                    item.transform.GetChild(1).GetComponent<Text>().text = i.NameRec;
+                    item.transform.GetChild(2).GetComponent<Text>().text = i.Price.ToString();
+                    item.transform.name = i.Id.ToString();
+                    k++;
+                }
+                j++;
             }
             if (k == 6)
                 break;
         }
         container.SetActive(false);
+    }
+
+    public void NextPage()
+    {
+        page++;
+        int count = 0;
+        foreach (RecipePotion i in masRecPotion)
+        {
+            if (currGrade == i.Grade)
+                count++;
+        }
+        if (count >= (page * 6) - 6)
+            FillRecepts(currGrade, page);
+        else
+            page--;
+    }
+
+    public void PrevPage()
+    {
+        if (page > 1)
+            page--;
+        FillRecepts(currGrade, page);
     }
 }

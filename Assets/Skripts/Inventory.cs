@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
 
-public class Inventory : MonoBehaviour {
-
+public class Inventory : MonoBehaviour
+{
     public int page;
     public int nextItem;
     public static List<ItemsInInventary> listItem;
@@ -34,8 +34,9 @@ public class Inventory : MonoBehaviour {
         }
     }
 
-    public void FillInventory()
+    public void FillInventory(int p)
     {
+        page = p;
         nextItem = (page * 9) - 9;
         for (int i = 0; i < 9; i++)
         {
@@ -72,7 +73,7 @@ public class Inventory : MonoBehaviour {
                 else
                 {
                     ChekEmpty();
-                    FillInventory();
+                    FillInventory(page);
                 }
                 break;
             }
@@ -83,7 +84,7 @@ public class Inventory : MonoBehaviour {
     {
         page++;
         if (listItem.Count >= (page * 9) - 9)
-            FillInventory();
+            FillInventory(page);
         else
             page--;
     }
@@ -92,6 +93,6 @@ public class Inventory : MonoBehaviour {
     {
         if(page > 1)
             page--;
-        FillInventory();
+        FillInventory(page);
     }
 }
