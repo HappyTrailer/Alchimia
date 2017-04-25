@@ -11,7 +11,9 @@ public class RecipePotion
 
     int grade;
     int[] idIngredient; //Масив ингредиентов необходимых 
-    //для производства зелья
+                        //для производства зелья
+
+    public bool opened;
 
     //Параметризированый конструктор для инициализации полей
     public RecipePotion(
@@ -20,7 +22,8 @@ public class RecipePotion
                         string nameRicipe,
                         int[] idIngredient,
                         string sprite,
-                        int grade
+                        int grade,
+                        bool opened
                         )
     {
         this.id = id;
@@ -29,6 +32,7 @@ public class RecipePotion
         this.idIngredient = idIngredient;
         this.sprite = sprite;
         this.grade = grade;
+        this.opened = opened;
     }
 
     public string Sprite
@@ -60,4 +64,5 @@ public class RecipePotion
     {
         get { return grade; }
     }
+    
 }

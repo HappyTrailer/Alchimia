@@ -21,14 +21,15 @@ public class ListRecipePotion : MonoBehaviour
     void InitMasRecPotion()
     {
         masRecPotion = new RecipePotion[] {
-            new RecipePotion(0, 10, "Чай", new int[] {0, 1}, "Sprite/Ing/Oreh", 1),
-            new RecipePotion(1, 15, "Лечебный бальзам", new int[] {0, 1, 2}, "Sprite/Ing/Poganki", 1),
-            new RecipePotion(2, 35, "Тест рецепт", new int[] {0, 1, 2, 0, 1, 2, 0, 1, 2, 0}, "Sprite/Ing/Malahit", 1),
-            new RecipePotion(3, 20, "Вытяжка из подорожника", new int[] {2, 2, 2}, "Sprite/Ing/Ejevika", 1),
-            new RecipePotion(4, 25, "Мыло", new int[] {3, 2, 1}, "Sprite/Ing/Hmel", 2),
-            new RecipePotion(5, 30, "Настойка боярышника", new int[] {3, 4, 0}, "Sprite/Ing/Kropiva", 2),
-            new RecipePotion(6, 35, "Сироп из ежевики", new int[] {6, 3, 3}, "Sprite/Ing/Byzina", 3),
-            new RecipePotion(7, 35, "Золотая стружка", new int[] {10, 10, 9}, "Sprite/Ing/Gold", 4)
+            /*id (?добавить переменную для покупки рецепта), price , name, masIngr, sprite, grade, opened*/
+            new RecipePotion(0, 10, "Чай", new int[] {0, 1}, "Sprite/Ing/Oreh", 1,true),
+            new RecipePotion(1, 15, "Лечебный бальзам", new int[] {0, 1, 2}, "Sprite/Ing/Poganki", 1,true),
+            new RecipePotion(2, 35, "Тест рецепт", new int[] {0, 1, 2, 0, 1, 2, 0, 1, 2, 0}, "Sprite/Ing/Malahit", 1,true),
+            new RecipePotion(3, 20, "Вытяжка из подорожника", new int[] {2, 2, 2}, "Sprite/Ing/Ejevika", 1,true),
+            new RecipePotion(4, 25, "Мыло", new int[] {3, 2, 1}, "Sprite/Ing/Hmel", 2,true),
+            new RecipePotion(5, 30, "Настойка боярышника", new int[] {3, 4, 0}, "Sprite/Ing/Kropiva", 2,true),
+            new RecipePotion(6, 35, "Сироп из ежевики", new int[] {6, 3, 3}, "Sprite/Ing/Byzina", 3,true),
+            new RecipePotion(7, 35, "Золотая стружка", new int[] {10, 10, 9}, "Sprite/Ing/Gold", 4,true)
         };
     }
 
