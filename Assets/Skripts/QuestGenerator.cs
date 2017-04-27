@@ -38,7 +38,7 @@ public class QuestGenerator : MonoBehaviour
 
         for (int i = 0; i < randQuestList.Count; i++)
         {
-            Debug.Log(randQuestList[i].nameQuest + " id = " + randQuestList[i].masPotion[0, 0]);
+            Debug.Log(randQuestList[i].nameQuest + " id = " + randQuestList[i].masPotion[0].id);
         }
         Debug.Log("---------------------------");
 
@@ -49,7 +49,7 @@ public class QuestGenerator : MonoBehaviour
     {
 
         //сделать рсчет дополнительной прибыли за задание
-        //прибыль высчитывается у процентах от всей суммы зелий в зависимости от сложности задания(времени и количества)
+        //прибыль высчитывается у процентах от всей суммы зелий в зависимости от сложности задания(времени ися  количества)
 
 
         List<int> list = TakeFreeReceptPotion(grade); //получение всех открытых рецептов
@@ -57,9 +57,9 @@ public class QuestGenerator : MonoBehaviour
         {
             int r = Random.Range(0, list.Count); //получение рандомного рецепта из списка доступных
             int countRepit = Random.Range(1, 3); //количество повторений
-            if (randQuestList.Count == 0 || list[r] != randQuestList[randQuestList.Count - 1].masPotion[0, 0])
+            if (randQuestList.Count == 0 || list[r] != randQuestList[randQuestList.Count - 1].masPotion[0].id)
             {
-                Quest q = new Quest("garde " + ListRecipePotion.masRecPotion[list[r]] + " first type №" + i.ToString(), 1 * i, RandTimeLimit(), new int[1, 3] { { list[r], countRepit, 0 } });//создание отдельного квеста
+                Quest q = new Quest("garde " + ListRecipePotion.masRecPotion[list[r]] + " first type №" + i.ToString(), 1 * i, RandTimeLimit(), new Quest.StrQ[] { new Quest.StrQ(list[r], countRepit, 0 ) });//создание отдельного квеста
 
                 randQuestList.Add(q); //Добавление квеста в список доступных
                 timeChance += 10; //увеличение шанса на появление временного ограничения     
@@ -70,11 +70,47 @@ public class QuestGenerator : MonoBehaviour
     }
 
 
-    void RandSecondTypeQuest(int countQuest)//Метод для создания заданий второго типа(с несколькими зельями) и добавление их в общий список
-    { }
+    void RandSecondTypeQuest(int countQuest, int grade)//Метод для создания заданий второго типа(с несколькими зельями) и добавление их в общий список
+    {
+        /*
+         * 1 получаем список доступных рецептов по грейду
+         * 2 в цыкле по количеству заданий добавлять квесты в сптсок
+         *      2.1 в условиях задания генерировать число с количеством зелий 
+         *          (ограничение на количество в списке доступных если только один то задания не генерируются)
+         *      2.2 формируется массив с индентификатором и числом повторений
+         *      
+         *      
+         */
 
 
-    void RandThirdTypeQuest(int countQuest)//Метод для создания заданий третьего типа(с рандомным рецептом) и добавление их в общий список
+        List<int> list = TakeFreeReceptPotion(grade); //получение всех открытых рецептов
+        if (list.Count > 2)
+        {
+            Quest.StrQ[] qmass = CreateMasStructQust(list);
+            for (int i = 0; i < countQuest; i++)
+            {
+                int r = Random.Range(0, list.Count); //получение рандомного рецепта из списка доступных
+                int countRepit = Random.Range(1, 3); //количество повторений
+                if (randQuestList.Count == 0 || list[r] != randQuestList[randQuestList.Count - 1].masPotion[0].id)
+                {
+                    Quest q = new Quest("garde " + ListRecipePotion.masRecPotion[list[r]] + " first type №" + i.ToString(), 1 * i, RandTimeLimit(), new Quest.StrQ[] { new Quest.StrQ(list[r], countRepit, 0) });//создание отдельного квеста
+
+                    randQuestList.Add(q); //Добавление квеста в список доступных
+                    timeChance += 10; //увеличение шанса на появление временного ограничения     
+                }
+            }
+        }
+
+        timeChance = 10;
+    }
+    Quest.StrQ[] CreateMasStructQust(List<int> list)
+    {
+        int r = Random.Range(0, list.Count);
+
+        return new Quest.StrQ[1];
+    }
+
+    void RandThirdTypeQuest(int countQuest, int grade)//Метод для создания заданий третьего типа(с рандомным рецептом) и добавление их в общий список
     { }
 
     List<int> TakeFreeReceptPotion(int grade) //получение выборки доступных рецептов определенного уровня
